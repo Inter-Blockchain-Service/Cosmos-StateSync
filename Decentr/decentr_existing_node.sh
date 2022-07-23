@@ -52,7 +52,7 @@ then
   #RPC_PORT3=26657
   #P2P_PORT3=26656
 
-  INTERVAL=1000
+  INTERVAL=100
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition from Microtick
