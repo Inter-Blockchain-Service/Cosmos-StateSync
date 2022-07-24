@@ -18,16 +18,17 @@ FILE=$(which jq)
 set -e
 
 # Change for your custom chain
-BINARY="https://github.com/ixofoundation/ixo-blockchain/releases/download/v0.16.0/ixod-1.6.0-linux-amd64"
-GENESIS="https://raw.githubusercontent.com/ixofoundation/genesis/master/impacthub-3/genesis.json"
+BINARY="https://ibs.team/statesync/Ixo/ixod"
+GENESIS="https://ibs.team/statesync/Ixo/genesis.json"
 DAEMON_HOME="$HOME/.ixod"
 DAEMON_NAME="ixod"
 BINARYNAME="ixod"
-DOWNLOADNAME="ixod-1.6.0-linux-amd64"
 CHAINID="impacthub-3"
 SEEDS=""
 GASPRICE="0.025uixo"
-
+RPC1="https://ixo-statesync.ibs.team"
+RPC_PORT1=443
+INTERVAL=100
 
 
 echo "Welcome to the StateSync script. This script will download the last binary and it will sync the last state."
@@ -45,7 +46,7 @@ then
   cd ~
   if [ -d $DAEMON_HOME ];
   then
-    echo "There is a $DAEMON_NAME folder there... if you want sync the data in an existent peer/validator try the script: statesync_linux_with_backup.sh"
+    echo "There is a $DAEMON_NAME folder there..."
     exit 1
   else
       echo "New installation...."
@@ -56,33 +57,17 @@ then
     rm -f $BINARYNAME	#deletes a previous downloaded binary
   fi
   wget -nc $BINARY
-  chmod +x $DOWNLOADNAME
-  mv $DOWNLOADNAME $BINARYNAME
+  chmod +x $BINARYNAME
   cp $BINARYNAME go/bin/
   ./$BINARYNAME init New_peer --chain-id $CHAINID
   rm -rf $DAEMON_HOME/config/genesis.json #deletes the default created genesis
   curl -s $GENESIS > $DAEMON_HOME/config/genesis.json
 
-  RPC1="https://ixo-statesync.ibs.team"
-  RPC_PORT1=443
 
-  #NODE2_IP="159.65.198.245"
-  #RPC2="http://$NODE2_IP"
-  #RPC_PORT2=26657
-  #P2P_PORT2=26656
-
-  #If you want to use a third StateSync Server... 
-  #DOMAIN_3=seed1.bitcanna.io     # If you want to use domain names 
-  #NODE3_IP=$(dig $DOMAIN_1 +short
-  #RPC3="http://$NODE3_IP"
-  #RPC_PORT3=26657
-  #P2P_PORT3=26656
-
-  INTERVAL=1000
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition
-  
+
   if [ $BLOCK_HEIGHT -eq 0 ]; then
     echo "Error: Cannot state sync to block 0; Latest block is $LATEST_HEIGHT and must be at least $INTERVAL; wait a few blocks!"
     exit 1
@@ -96,8 +81,6 @@ then
 
   NODE1_ID=$(curl -s "$RPC1:$RPC_PORT1/status" | jq -r .result.node_info.id)
   NODE1_LISTEN_ADD=$(curl -s "$RPC1:$RPC_PORT1/status" | jq -r .result.node_info.listen_addr)
-  #NODE2_ID=$(curl -s "$RPC2:$RPC_PORT2/status" | jq -r .result.node_info.id)
-  #NODE3_ID=$(curl -s "$RPC3:$RPC_PORT3/status" | jq -r .result.node_info.id)
 
   sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
   s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$RPC1:$RPC_PORT1,$RPC1:$RPC_PORT1\"| ; \
@@ -107,7 +90,7 @@ then
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025ixo\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025uixo\"/' $DAEMON_HOME/config/app.toml
 
   ./$BINARYNAME unsafe-reset-all
   echo ##################################################################
