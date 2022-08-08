@@ -90,7 +90,7 @@ then
 
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.1rowan\"/' $DAEMON_HOME/config/app.toml
 
-  ./$BINARYNAME unsafe-reset-all
+  ./$BINARYNAME tendermint unsafe-reset-all
   echo ##################################################################
   echo  "PLEASE HIT CTRL+C WHEN THE CHAIN IS SYNCED, Wait the last block"
   echo ##################################################################
