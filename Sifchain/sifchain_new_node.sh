@@ -18,7 +18,7 @@ FILE=$(which jq)
 set -e
 
 # Change for your custom chain
-BINARY="https://ibs.team/statesync/Sifchain/sifnoded"
+BINARY="https://github.com/Sifchain/sifnode/releases/download/v0.14.0/sifnoded-v0.14.0-linux-amd64.zip"
 GENESIS="https://ibs.team/statesync/Sifchain/genesis.json"
 DAEMON_HOME="$HOME/.sifnoded"
 DAEMON_NAME="sifnoded"
@@ -57,6 +57,7 @@ then
     rm -f $BINARYNAME	#deletes a previous downloaded binary
   fi
   wget -nc $BINARY
+  unzip sifnoded-v0.14.0-linux-amd64.zip
   chmod +x $BINARYNAME
   cp $BINARYNAME go/bin/
   ./$BINARYNAME init New_peer --chain-id $CHAINID
