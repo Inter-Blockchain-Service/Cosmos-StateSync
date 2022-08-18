@@ -26,8 +26,8 @@ BINARYNAME="sifnoded"
 CHAINID="sifchain-1"
 SEEDS="4bf564ab479c860977759d050f4d42018f4bfbde@sif-seed.blockpane.com:26656"
 GASPRICE="0.1rowan"
-RPC1="https://sifchain-statesync.ibs.team"
-RPC_PORT1=443
+RPC1="http://161.97.156.216"
+RPC_PORT1=30657
 INTERVAL=100
 
 

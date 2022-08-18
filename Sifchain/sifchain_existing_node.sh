@@ -9,10 +9,10 @@
 
 DAEMON_HOME="$HOME/.sifnoded"
 DAEMON_NAME="sifnoded"
-NODE1_IP="sifchain-statesync.ibs.team"
-RPC1="https://$NODE1_IP"
-RPC_PORT1=443
-INTERVAL=1000
+NODE1_IP="161.97.156.216"
+RPC1="http://$NODE1_IP"
+RPC_PORT1=30657
+INTERVAL=100
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
