@@ -26,8 +26,8 @@ BINARYNAME="bcnad"
 CHAINID="bitcanna-1"
 SEEDS=""
 GASPRICE="0.001ubcna"
-RPC1="https://bcna-statesync.ibs.team"
-RPC_PORT1=443
+RPC1="http://161.97.156.216"
+RPC_PORT1=26657
 INTERVAL=100
 
 
