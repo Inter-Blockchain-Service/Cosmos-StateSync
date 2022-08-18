@@ -59,7 +59,7 @@ then
   wget -nc $BINARY
   chmod +x $BINARYNAME
   cp $BINARYNAME go/bin/
-  ./$BINARYNAME init New_peer --chain-id $CHAINID
+  ./$BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json #deletes the default created genesis
   curl -s $GENESIS > $DAEMON_HOME/config/genesis.json
 
