@@ -26,8 +26,8 @@ BINARYNAME="rizond"
 CHAINID="titan-1"
 SEEDS=""
 GASPRICE="0.0001uatolo"
-RPC1="https://rizon-statesync.ibs.team"
-RPC_PORT1=443
+RPC1="http://161.97.156.216"
+RPC_PORT1=28657
 INTERVAL=100
 
 
