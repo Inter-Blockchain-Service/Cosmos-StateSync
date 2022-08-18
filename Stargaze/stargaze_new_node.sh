@@ -26,8 +26,8 @@ BINARYNAME="starsd"
 CHAINID="stargaze-1"
 SEEDS="70ed826888f102c7c1ceb4d07287956628a53508@174.138.124.7:36656,722079345d941cd2da3daedea548c909d9b83ec5@104.248.101.113:36656,d5fc4f479c4e212c96dff5704bb2468ea03b8ae3@sg-seed.blockpane.com:26656"
 GASPRICE="0ustar"
-RPC1="https://stargaze-statesync.ibs.team"
-RPC_PORT1=443
+RPC1="http://161.97.156.216"
+RPC_PORT1=31657
 INTERVAL=1000
 
 
@@ -59,7 +59,7 @@ then
   wget -nc $BINARY
   chmod +x $BINARYNAME
   cp $BINARYNAME go/bin/
-  ./$BINARYNAME init New_peer --chain-id $CHAINID
+  ./$BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json #deletes the default created genesis
   curl -s $GENESIS > $DAEMON_HOME/config/genesis.json
 
@@ -88,9 +88,9 @@ then
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.1rowan\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0ustars\"/' $DAEMON_HOME/config/app.toml
 
-  ./$BINARYNAME tendermint unsafe-reset-all
+  ./$BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
   echo ##################################################################
   echo  "PLEASE HIT CTRL+C WHEN THE CHAIN IS SYNCED, Wait the last block"
   echo ##################################################################
