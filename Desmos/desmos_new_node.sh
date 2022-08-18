@@ -26,8 +26,8 @@ BINARYNAME="desmos"
 CHAINID="desmos-mainnet"
 SEEDS=""
 GASPRICE="0.025udsm"
-RPC1="https://desmos-statesync.ibs.team"
-RPC_PORT1=443
+RPC1="http://161.97.156.216"
+RPC_PORT1=27657
 INTERVAL=100
 
 
