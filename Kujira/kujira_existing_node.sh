@@ -9,9 +9,8 @@
 
 DAEMON_HOME="$HOME/.kujira"
 DAEMON_NAME="kujirad"
-NODE1_IP="kujira-statesync.ibs.team"
-RPC1="https://$NODE1_IP"
-RPC_PORT1=443
+RPC1="http://75.119.157.167"
+RPC_PORT1=30657
 INTERVAL=1000
 
 # Let's check if JQ tool is installed

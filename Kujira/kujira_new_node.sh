@@ -24,8 +24,8 @@ DAEMON_HOME="$HOME/.kujira"
 DAEMON_NAME="kujirad"
 CHAINID="kaiyo-1"
 SEEDS=""
-RPC1="https://kujira-statesync.ibs.team"
-RPC_PORT1=443
+RPC1="http://75.119.157.167"
+RPC_PORT1=30657
 INTERVAL=1000
 
 
