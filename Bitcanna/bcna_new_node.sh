@@ -59,7 +59,7 @@ echo "DON'T USE WITH A EXISTENT peer/validator config will be erased."
   git clone https://github.com/BitCannaGlobal/bcna.git
   cd bcna
   git checkout v1.4.2
-  make build
+  make install
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json #deletes the default created genesis
