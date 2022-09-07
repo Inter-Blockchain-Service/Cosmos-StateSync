@@ -26,9 +26,9 @@ BINARYNAME="rizond"
 CHAINID="titan-1"
 SEEDS=""
 GASPRICE="0.0001uatolo"
-RPC1="http://161.97.156.216"
-RPC_PORT1=28657
-INTERVAL=100
+RPC1="http://185.218.126.71"
+RPC_PORT1=27657
+INTERVAL=1000
 
 
 echo "Welcome to the StateSync script. This script will download the last binary and it will sync the last state."
