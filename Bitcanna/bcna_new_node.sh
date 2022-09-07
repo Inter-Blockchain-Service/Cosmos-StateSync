@@ -7,7 +7,7 @@
 # Pruning should be fine tuned also, for this testings is set to nothing
 #     pruning = "~default"
 
-# Let's check if JQ tool is installed
+# Let's check if JQ GIT and GO is installed
 FILE=$(which jq)
  if [ -f "$FILE" ]; then
  echo "JQ is present"
