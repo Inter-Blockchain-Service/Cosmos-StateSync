@@ -7,7 +7,7 @@
 # Pruning should be fine tuned also, for this testings is set to nothing
 #     pruning = "~default"
 
-# Let's check if JQ tool is installed
+# Let's check if JQ GIT and GO is installed
 FILE=$(which jq)
  if [ -f "$FILE" ]; then
  echo "JQ is present"
@@ -100,6 +100,6 @@ echo "DON'T USE WITH A EXISTENT peer/validator config will be erased."
   $BINARYNAME start
   sed -E -i 's/enable = true/enable = false/' $DAEMON_HOME/config/config.toml
   echo ##################################################################
-  echo  Run again with: ./$BINARYNAME start
+  echo  Run again with: $BINARYNAME start
   echo ##################################################################
 fi
