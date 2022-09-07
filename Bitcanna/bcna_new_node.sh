@@ -100,6 +100,6 @@ echo "DON'T USE WITH A EXISTENT peer/validator config will be erased."
   $BINARYNAME start
   sed -E -i 's/enable = true/enable = false/' $DAEMON_HOME/config/config.toml
   echo ##################################################################
-  echo  Run again with: ./$BINARYNAME start
+  echo  Run again with: $BINARYNAME start
   echo ##################################################################
 fi
