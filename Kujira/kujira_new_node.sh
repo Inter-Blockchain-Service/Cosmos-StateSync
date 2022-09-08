@@ -51,7 +51,7 @@ FILE=$(which go)
  fi
 
 wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.18.6
-source /home/remi/.bashrc
+source $HOME/.bashrc
 
 clear
 echo "#########################################################################################################"
