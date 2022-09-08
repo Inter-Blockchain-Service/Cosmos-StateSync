@@ -5,20 +5,33 @@
 #     snapshot-interval = 1000
 #     snapshot-keep-recent = 10
 # Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "nothing"
+#     pruning = "~default"
 
-# Let's check if JQ tool is installed
+# Let's check if JQ GIT and GO is installed
 FILE=$(which jq)
  if [ -f "$FILE" ]; then
  echo "JQ is present"
  else
  echo "$FILE JQ tool does not exist, install with: sudo apt install jq"
+ exit 1
+ fi
+FILE=$(which git)
+ if [ -f "$FILE" ]; then
+ echo "GIT is present"
+ else
+ echo "$FILE GIT tool does not exist, install with: sudo apt install git"
+ exit 1
+ fi
+FILE=$(which go)
+ if [ -f "$FILE" ]; then
+ echo "GO is present"
+ else
+ echo "$FILE GO tool does not exist, install with: wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.18.6"
+ exit 1
  fi
 
 set -e
-
-# Change for your custom chain
-BINARY="https://ibs.team/statesync/Bitcana/bcnad"
+REPO="https://github.com/BitCannaGlobal/bcna.git"
 GENESIS="https://ibs.team/statesync/Bitcana/genesis.json"
 DAEMON_HOME="$HOME/.bcna"
 DAEMON_NAME="bcnad"
@@ -31,35 +44,24 @@ RPC_PORT1=26657
 INTERVAL=100
 
 
-echo "Welcome to the StateSync script. This script will download the last binary and it will sync the last state."
+echo "Welcome to the StateSync script. This script will build the last binary and it will sync the last state."
 echo "DON'T USE WITH A EXISTENT peer/validator config will be erased."
-echo "You should have a crypted backup of your wallet keys, your node keys and your validator keys."
-echo "Ensure that you can restore your wallet keys if is needed."
-read -p "have you stopped the $DAEMON_NAME service? CTRL + C to exit or any key to continue..."
-read -p "$DAEMON_HOME folder, your keys and config WILL BE ERASED, it's ok if you want to build a peer/validator for first time, PROCED (y/n)? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  #  State Sync client config.
-  echo ##################################################
-  echo " Making a backup from $DAEMON_NAME config files if exist"
-  echo ##################################################
+
   cd ~
   if [ -d $DAEMON_HOME ];
   then
     echo "There is a $DAEMON_NAME folder there..."
     exit 1
   else
-      echo "New installation...."
+      echo "Build bcnad...."
   fi
 
-  if [ -f $DAEMON_HOME ];
-   then
-    rm -f $BINARYNAME	#deletes a previous downloaded binary
-  fi
-  wget -nc $BINARY
-  chmod +x $BINARYNAME
-  cp $BINARYNAME go/bin/
-  ./$BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
+  git clone https://github.com/BitCannaGlobal/bcna.git
+  cd bcna
+  git checkout v1.4.2
+  make install
+  cd ~
+  $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json #deletes the default created genesis
   curl -s $GENESIS > $DAEMON_HOME/config/genesis.json
 
@@ -90,14 +92,14 @@ then
 
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.001ubcna\"/' $DAEMON_HOME/config/app.toml
 
-  ./$BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
+  $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
   echo ##################################################################
   echo  "PLEASE HIT CTRL+C WHEN THE CHAIN IS SYNCED, Wait the last block"
   echo ##################################################################
   sleep 5
-  ./$BINARYNAME start
+  $BINARYNAME start
   sed -E -i 's/enable = true/enable = false/' $DAEMON_HOME/config/config.toml
   echo ##################################################################
-  echo  Run again with: ./$BINARYNAME start
+  echo  Run again with: $BINARYNAME start
   echo ##################################################################
 fi

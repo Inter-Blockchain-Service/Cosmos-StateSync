@@ -5,21 +5,26 @@
 #     snapshot-interval = 1000
 #     snapshot-keep-recent = 10
 # Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "nothing"
+#     pruning = "~default"
 
-# Let's check if JQ tool is installed
-FILE=$(which jq)
+# Let's check if GO is installed
+FILE=$(which go)
  if [ -f "$FILE" ]; then
- echo "JQ is present"
+ echo "GO is present"
  else
- echo "$FILE JQ tool does not exist, install with: sudo apt install jq"
+ echo "$FILE GO tool does not exist, install with: wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.18.6"
+ exit 1
  fi
 
-set -e
+echo "update the local package list and install any available upgrades"
+sudo apt-get update && sudo apt upgrade -y
+echo "install toolchain and ensure accurate time synchronization"
+sudo apt-get install make build-essential gcc git jq chrony -y
 
-# Change for your custom chain
-BINARY="https://ibs.team/statesync/Kujira/kujirad"
+set -e
+REPO="https://github.com/Team-Kujira/core.git"
 GENESIS="https://ibs.team/statesync/Kujira/genesis.json"
+BINARYNAME="kujirad"
 DAEMON_HOME="$HOME/.kujira"
 DAEMON_NAME="kujirad"
 CHAINID="kaiyo-1"
@@ -28,33 +33,32 @@ RPC1="http://75.119.157.167"
 RPC_PORT1=30657
 INTERVAL=1000
 
-
-echo "Welcome to the StateSync script. This script will download the last binary and it will sync the last state."
+clear
+echo "#########################################################################################################"
+echo "Welcome to the StateSync script. This script will build the last binary and it will sync the last state."
 echo "DON'T USE WITH A EXISTENT peer/validator config will be erased."
-echo "You should have a crypted backup of your wallet keys, your node keys and your validator keys." 
-echo "Ensure that you can restore your wallet keys if is needed."
-read -p "have you stopped the $DAEMON_NAME service? CTRL + C to exit or any key to continue..."
-read -p "$DAEMON_HOME folder, your keys and config WILL BE ERASED, it's ok if you want to build a peer/validator for first time, PROCED (y/n)? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  #  State Sync client config.
+echo "#########################################################################################################"
+sleep 1
   cd ~
   if [ -d $DAEMON_HOME ];
   then
     echo "There is a $DAEMON_NAME folder there..."
     exit 1
   else
-      echo "New installation...."
+      echo "Build kujirad...."
   fi
 
-  if [ -f $DAEMON_HOME ];
-   then
-    rm -f $DAEMON_NAME	#deletes a previous downloaded binary
+  if [ -d core ]; 
+  then
+    sudo rm -r core
   fi
-  wget -nc $BINARY
-  chmod +x $DAEMON_NAME
-  cp $DAEMON_NAME go/bin/
-  ./$DAEMON_NAME init New_peer --chain-id $CHAINID
+
+  git clone $REPO
+  cd core
+  git checkout v0.5.0
+  make install
+  cd ~
+  $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json #deletes the default created genesis
   curl -s $GENESIS > $DAEMON_HOME/config/genesis.json
 
@@ -82,18 +86,53 @@ then
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.00125ukuji,0.00125ibc\/295548A78785A1007F232DE286149A6FF512F180AF5657780FC89C009E2C348F,0.000125ibc\/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2,0.00125ibc\/47BD209179859CDE4A2806763D7189B6E6FE13A17880FE2B42DE1E6C1E329E23,0.00125ibc\/EFF323CC632EC4F747C61BCE238A758EFDB7699C3226565F7C20DA06509D59A5,0.00125ibc\/DA59C009A0B3B95E0549E6BF7B075C8239285989FF457A8EDDBB56F10B2A6986,0.00125ibc\/A358D7F19237777AF6D8AD0E0F53268F8B18AE8A53ED318095C14D6D7F3B2DB5,0.00125ibc\/F3AA7EF362EC5E791FE78A0F4CCC69FEE1F9A7485EB1A8CAB3F6601C00522F10\"/' $DAEMON_HOME/config/app.toml
 
   sed -E -i -s 's/timeout_commit = \".*\"/timeout_commit = \"1500ms"/' $DAEMON_HOME/config/config.toml
 
-  echo ##################################################################
+  $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
+
+  clear
+
+  echo "##################################################################"
   echo  "PLEASE HIT CTRL+C WHEN THE CHAIN IS SYNCED, Wait the last block"
-  echo ##################################################################
+  echo "##################################################################"
   sleep 5
-  ./$DAEMON_NAME start
+  $DAEMON_NAME start
   sed -E -i 's/enable = true/enable = false/' $DAEMON_HOME/config/config.toml
-  echo ##################################################################
-  echo  Run again with: ./$DAEMON_NAME start
-  echo ##################################################################
-fi
+
+  clear
+
+  echo "##################################################################"
+  echo             Kujira is installed and synced
+  echo "##################################################################"
+  echo            You can now creat a service with :
+  echo
+  echo  "sudo tee /etc/systemd/system/kujirad.service > /dev/null <<EOF"
+  echo  "[Unit]"
+  echo  "Description=kujira"
+  echo  "After=network-online.target"
+  echo
+  echo  "[Service]"
+  echo  "User=$USER"
+  echo  "ExecStart=$(which kujirad) start"
+  echo  "Restart=on-failure"
+  echo  "RestartSec=3"
+  echo  "LimitNOFILE=65535"
+  echo
+  echo  "[Install]"
+  echo  "WantedBy=multi-user.target"
+  echo  "EOF"
+  echo "##################################################################"
+  echo             For enable the service at start
+  echo    "sudo systemctl daemon-reload && sudo systemctl enable kujirad"
+  echo
+  echo                For start the service run
+  echo               "sudo systemctl start kujirad"
+  echo
+  echo                  To check the log run
+  echo               "sudo journalctl -fu kujirad"
+  echo
+  echo                         ENJOY
+  echo "##################################################################"
+
