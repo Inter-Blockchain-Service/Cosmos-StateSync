@@ -5,61 +5,61 @@
 #     snapshot-interval = 1000
 #     snapshot-keep-recent = 10
 # Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "nothing"
+#     pruning = "~default"
 
-# Let's check if JQ tool is installed
-FILE=$(which jq)
+# Let's check if GO is installed
+FILE=$(which go)
  if [ -f "$FILE" ]; then
- echo "JQ is present"
+ echo "GO is present"
  else
- echo "$FILE JQ tool does not exist, install with: sudo apt install jq"
+ echo "$FILE GO tool does not exist, install with: wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.18.6"
+ exit 1
  fi
 
-set -e
+echo "update the local package list and install any available upgrades"
+sudo apt-get update && sudo apt upgrade -y
+echo "install toolchain and ensure accurate time synchronization"
+sudo apt-get install make build-essential gcc git jq chrony -y
 
-# Change for your custom chain
-BINARY="https://ibs.team/statesync/Passage/passage"
+set -e
+REPO="https://github.com/envadiv/Passage3D"
 GENESIS="https://ibs.team/statesync/Passage/genesis.json"
 DAEMON_HOME="$HOME/.passage"
 DAEMON_NAME="passage"
-BINARYNAME="passage"
 CHAINID="passage-1"
-SEEDS="aebb8431609cb126a977592446f5de252d8b7fa1@104.236.201.138:26656,b6beabfb9309330944f44a1686742c2751748b83@5.161.47.163:26656,7a9a36630523f54c1a0d56fc01e0e153fd11a53d@167.235.24.145:26656"
-GASPRICE="0upasg"
+SEEDS=""
 RPC1="http://75.119.157.167"
 RPC_PORT1=31657
 INTERVAL=1000
+REPODIRECTORY="Passage3D"
+VERSION="v1.0.0"
 
-
-echo "Welcome to the StateSync script. This script will download the last binary and it will sync the last state."
+clear
+echo "#########################################################################################################"
+echo "Welcome to the StateSync script. This script will build the last binary and it will sync the last state."
 echo "DON'T USE WITH A EXISTENT peer/validator config will be erased."
-echo "You should have a crypted backup of your wallet keys, your node keys and your validator keys." 
-echo "Ensure that you can restore your wallet keys if is needed."
-read -p "have you stopped the $DAEMON_NAME service? CTRL + C to exit or any key to continue..."
-read -p "$DAEMON_HOME folder, your keys and config WILL BE ERASED, it's ok if you want to build a peer/validator for first time, PROCED (y/n)? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  #  State Sync client config.
-  echo ##################################################
-  echo " Making a backup from $DAEMON_NAME config files if exist"
-  echo ##################################################
+echo "#########################################################################################################"
+sleep 1
   cd ~
   if [ -d $DAEMON_HOME ];
   then
     echo "There is a $DAEMON_NAME folder there..."
     exit 1
   else
-      echo "New installation...."
+      echo "Build $DAEMON_NAME...."
   fi
 
-  if [ -f $DAEMON_HOME ];
-   then
-    rm -f $BINARYNAME	#deletes a previous downloaded binary
+  if [ -d $REPODIRECTORY ]; 
+  then
+    sudo rm -r $REPODIRECTORY
   fi
-  wget -nc $BINARY
-  chmod +x $BINARYNAME
-  cp $BINARYNAME go/bin/
-  ./$BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
+
+  git clone $REPO
+  cd $REPODIRECTORY
+  git checkout $VERSION
+  make install
+  cd ~
+  $DAEMON_NAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json #deletes the default created genesis
   curl -s $GENESIS > $DAEMON_HOME/config/genesis.json
 
@@ -87,17 +87,51 @@ then
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0upasg\"/' $DAEMON_HOME/config/app.toml
 
-  ./$BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
-  echo ##################################################################
+  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME
+
+  clear
+
+  echo "##################################################################"
   echo  "PLEASE HIT CTRL+C WHEN THE CHAIN IS SYNCED, Wait the last block"
-  echo ##################################################################
+  echo "##################################################################"
   sleep 5
-  ./$BINARYNAME start
+  $DAEMON_NAME start --home $DAEMON_HOME
   sed -E -i 's/enable = true/enable = false/' $DAEMON_HOME/config/config.toml
-  echo ##################################################################
-  echo  Run again with: ./$BINARYNAME start
-  echo ##################################################################
-fi
+
+  clear
+
+  echo "##################################################################"
+  echo             $DAEMON_NAME is installed and synced
+  echo "##################################################################"
+  echo            You can now create a service with :
+  echo
+  echo  "sudo tee /etc/systemd/system/$DAEMON_NAME.service > /dev/null <<EOF"
+  echo  "[Unit]"
+  echo  "Description=$DAEMON_NAME Service"
+  echo  "After=network-online.target"
+  echo
+  echo  "[Service]"
+  echo  "User=$USER"
+  echo  "ExecStart=$(which $DAEMON_NAME) start"
+  echo  "Restart=on-failure"
+  echo  "RestartSec=3"
+  echo  "LimitNOFILE=65535"
+  echo
+  echo  "[Install]"
+  echo  "WantedBy=multi-user.target"
+  echo  "EOF"
+  echo "##################################################################"
+  echo             To enable service at start
+  echo    "sudo systemctl daemon-reload && sudo systemctl enable $DAEMON_NAME"
+  echo
+  echo                To start service run
+  echo               "sudo systemctl start $DAEMON_NAME"
+  echo
+  echo                  To check logs run
+  echo               "sudo journalctl -fu $DAEMON_NAME"
+  echo
+  echo                         ENJOY
+  echo "##################################################################"
+
