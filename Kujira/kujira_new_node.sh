@@ -78,6 +78,10 @@ sleep 2
     sudo rm -r $REPODIRECTORY
   fi
 
+  GOROOT=$HOME/.go
+  GOPATH=$HOME/go
+  PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
   git clone $REPO
   cd $REPODIRECTORY
   git checkout $VERSION
