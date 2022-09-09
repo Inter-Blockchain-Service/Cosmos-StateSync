@@ -10,14 +10,17 @@
 
 set -e
 REPO="https://github.com/Team-Kujira/core.git"
+REPODIRECTORY="core"
 GENESIS="https://ibs.team/statesync/Kujira/genesis.json"
 BINARYNAME="kujirad"
+VERSION="v0.5.0"
 DAEMON_HOME="$HOME/.kujira"
 CHAINID="kaiyo-1"
 SEEDS=""
 RPC1="http://75.119.157.167"
 RPC_PORT1=30657
 INTERVAL=1000
+GOVERSION="1.18.6"
 
 clear
 echo "###################################################################"
@@ -40,7 +43,7 @@ sudo apt-get install make build-essential gcc git jq chrony -y
 clear
 echo "##################################################################"
 echo " "
-echo "                     install go 1.18.6"
+echo "                     install go $GOVERSION"
 echo " "
 echo "##################################################################"
 sleep 3
@@ -50,7 +53,7 @@ FILE=$(which go)
  sudo rm -r $GOROOT
  fi
 
-wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.18.6
+wget -q -O - https://git.io/vQhTU | bash -s -- --version $GOVERSION
 source $HOME/.bashrc
 
 clear
@@ -67,17 +70,17 @@ sleep 2
     echo "There is a $BINARYNAME folder there..."
     exit 1
   else
-      echo "Build kujirad...."
+      echo "Build $BINARYNAME...."
   fi
 
-  if [ -d core ]; 
+  if [ -d $REPODIRECTORY ]; 
   then
-    sudo rm -r core
+    sudo rm -r $REPODIRECTORY
   fi
 
   git clone $REPO
-  cd core
-  git checkout v0.5.0
+  cd $REPODIRECTORY
+  git checkout $VERSION
   make install
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
@@ -127,7 +130,7 @@ sleep 2
 
   clear
 
-  read -p "Do you want creat a service (y/n)? " -n 1 -r
+  read -p "Do you want create a service (y/n)? " -n 1 -r
   clear
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -151,7 +154,7 @@ then
 
   echo "##################################################################"
   echo " "
-  echo "                Service is runing to check Log run"
+  echo "                Service is running to check Log run"
   echo "                 sudo journalctl -fu $BINARYNAME"
   echo "                            ENJOY"
   echo "##################################################################"
