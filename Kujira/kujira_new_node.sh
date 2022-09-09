@@ -44,14 +44,14 @@ echo "                     install go 1.18.6"
 echo " "
 echo "##################################################################"
 sleep 3
-FILE=$(which go)
- if [ -f "$FILE" ]; 
+
+ if [ -f "$GOROOT" ];
  then
  sudo rm -r $GOROOT
  fi
 
-wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.18.6
-source $HOME/.bashrc
+ wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.18.6
+ source $HOME/.bashrc
 
 clear
 echo "#########################################################################################################"
