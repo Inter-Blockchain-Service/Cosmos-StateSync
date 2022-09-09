@@ -10,7 +10,7 @@
 
 set -e
 REPO="https://github.com/Team-Kujira/core.git"
-REPODIRECTORY="core"
+REPODIRECTORY="$HOME/core"
 GENESIS="https://ibs.team/statesync/Kujira/genesis.json"
 BINARYNAME="kujirad"
 VERSION="v0.5.0"
