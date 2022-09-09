@@ -48,7 +48,7 @@ echo " "
 echo "##################################################################"
 sleep 3
 
- if [ -f "$GOROOT" ];
+ if [ -d "$GOROOT" ];
  then
  sudo rm -r $GOROOT
  fi
