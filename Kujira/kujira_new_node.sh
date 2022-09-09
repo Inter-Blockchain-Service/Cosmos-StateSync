@@ -53,7 +53,7 @@ sleep 3
  sudo rm -r $GOROOT
  fi
 
- wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.18.6
+ wget -q -O - https://git.io/vQhTU | bash -s -- --version $GOVERSION
  source $HOME/.bashrc
 
 clear
