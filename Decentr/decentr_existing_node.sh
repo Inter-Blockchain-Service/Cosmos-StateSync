@@ -9,9 +9,9 @@
 
 DAEMON_HOME="$HOME/.decentr"
 DAEMON_NAME="decentrd"
-NODE1_IP="decentr-statesync.ibs.team"
-RPC1="https://$NODE1_IP"
-RPC_PORT1=443
+NODE1_IP="75.119.157.167"
+RPC1="http://$NODE1_IP"
+RPC_PORT1=28657
 INTERVAL=1000
 
 # Let's check if JQ tool is installed
