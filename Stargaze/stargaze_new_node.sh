@@ -17,9 +17,9 @@ VERSION="v7.0.0"
 DAEMON_HOME="$HOME/.starsd"
 CHAINID="stargaze-1"
 SEEDS=""
-RPC1="http://185.218.126.71"
+RPC1="http://38.242.232.202"
 RPC_PORT1=28657
-INTERVAL=1000
+INTERVAL=100
 GOVERSION="1.18.6"
 
 clear
@@ -137,7 +137,7 @@ sleep 2
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo  "[Unit]
-  Description=$BINARYNAME
+  Description=$BINARYNAME 
   After=network-online.target
   
   [Service]

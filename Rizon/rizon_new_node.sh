@@ -13,13 +13,13 @@ REPO="https://github.com/rizon-world/rizon"
 REPODIRECTORY="$HOME/rizon"
 GENESIS="https://ibs.team/statesync/Rizon/genesis.json"
 BINARYNAME="rizond"
-VERSION="v0.3.0"
+VERSION="v0.4.0"
 DAEMON_HOME="$HOME/.rizon"
 CHAINID="titan-1"
 SEEDS=""
-RPC1="http://185.218.126.71"
+RPC1="http://38.242.232.202"
 RPC_PORT1=27657
-INTERVAL=1000
+INTERVAL=100
 GOVERSION="1.18.6"
 
 clear
@@ -117,7 +117,7 @@ sleep 2
 
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025uatolo\"/' $DAEMON_HOME/config/app.toml
 
-  $BINARYNAME unsafe-reset-all --home $DAEMON_HOME
+  $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
   clear
 

@@ -9,10 +9,10 @@
 
 DAEMON_HOME="$HOME/.rizon"
 DAEMON_NAME="rizond"
-NODE1_IP="185.218.126.71"
+NODE1_IP="38.242.232.202"
 RPC1="http://$NODE1_IP"
 RPC_PORT1=27657
-INTERVAL=1000
+INTERVAL=100
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
