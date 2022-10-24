@@ -13,13 +13,13 @@ REPO="https://github.com/public-awesome/stargaze"
 REPODIRECTORY="$HOME/stargaze"
 GENESIS="https://ibs.team/statesync/Stargaze/genesis.json"
 BINARYNAME="starsd"
-VERSION="v7.0.0"
+VERSION="v7.5.0"
 DAEMON_HOME="$HOME/.starsd"
 CHAINID="stargaze-1"
 SEEDS=""
-RPC1="http://185.218.126.71"
+RPC1="http://38.242.232.202"
 RPC_PORT1=28657
-INTERVAL=1000
+INTERVAL=100
 GOVERSION="1.18.6"
 
 clear
@@ -115,7 +115,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.0025ustar\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.0025ustars\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
@@ -137,7 +137,7 @@ sleep 2
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo  "[Unit]
-  Description=kujira
+  Description=$BINARYNAME 
   After=network-online.target
   
   [Service]

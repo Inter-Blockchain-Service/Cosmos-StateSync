@@ -9,16 +9,16 @@
 
 
 set -e
-REPO="https://github.com/rizon-world/rizon"
-REPODIRECTORY="$HOME/rizon"
-GENESIS="https://ibs.team/statesync/Rizon/genesis.json"
-BINARYNAME="rizond"
-VERSION="v0.4.1"
-DAEMON_HOME="$HOME/.rizon"
-CHAINID="titan-1"
+REPO="https://github.com/e-money/em-ledger"
+REPODIRECTORY="$HOME/em-ledger"
+GENESIS="https://raw.githubusercontent.com/e-money/networks/master/emoney-3/genesis.json"
+BINARYNAME="emd"
+VERSION="v1.1.4"
+DAEMON_HOME="$HOME/.emd"
+CHAINID="emoney-3"
 SEEDS=""
-RPC1="http://38.242.232.202"
-RPC_PORT1=27657
+RPC1="http://161.97.156.216"
+RPC_PORT1=28657
 INTERVAL=100
 GOVERSION="1.18.6"
 
@@ -115,7 +115,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025uatolo\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025ungm\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
@@ -137,7 +137,7 @@ sleep 2
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo  "[Unit]
-  Description=$BINARYNAME
+  Description=kujira
   After=network-online.target
   
   [Service]

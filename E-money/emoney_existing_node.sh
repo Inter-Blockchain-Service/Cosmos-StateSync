@@ -1,4 +1,3 @@
-#!/bin/bash
 # Based on the work of Joe (Chorus-One) for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 # Updated by Raul Bernal for Bitcanna - https://github.com/BitCannaCommunity/cosmos-statesync_client
 # RPC by Inter Blockchain Services
@@ -7,12 +6,12 @@
 #     snapshot-interval = 1000
 #     snapshot-keep-recent = 10
 
-DAEMON_HOME="$HOME/.decentr"
-DAEMON_NAME="decentrd"
-NODE1_IP="75.119.157.167"
+DAEMON_HOME="$HOME/.emd"
+DAEMON_NAME="emd"
+NODE1_IP="161.97.156.216"
 RPC1="http://$NODE1_IP"
 RPC_PORT1=28657
-INTERVAL=1000
+INTERVAL=100
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
@@ -35,7 +34,7 @@ read -p "ATTENTION! This script will clear the data folder (unsafe-reset-all) & 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "\nClearing the data folder & P2P Address Book"
-  $DAEMON_NAME unsafe-reset-all
+  $DAEMON_NAME unsafe-reset-all --home $DAEMON_HOME
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition from Microtick
@@ -62,7 +61,6 @@ then
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-#  $DAEMON_NAME unsafe-reset-all
   echo ##################################################################
   echo  "PLEASE HIT CTRL+C WHEN THE CHAIN IS SYNCED, Wait the last block"
   echo ##################################################################
