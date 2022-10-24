@@ -38,7 +38,7 @@ echo "   install toolchain and ensure accurate time synchronization"
 echo " "
 echo "##################################################################"
 sleep 3
-sudo apt-get install make build-essential gcc git jq chrony -y
+sudo apt-get install make build-essential gcc git jq chrony curl -y
 
 clear
 echo "##################################################################"
