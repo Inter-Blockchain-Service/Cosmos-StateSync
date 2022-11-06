@@ -117,7 +117,7 @@ sleep 2
 
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025udec\"/' $DAEMON_HOME/config/app.toml
 
-  $BINARYNAME unsafe-reset-all --home $DAEMON_HOME
+  $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
   clear
 
