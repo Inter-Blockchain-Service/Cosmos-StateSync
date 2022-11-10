@@ -8,9 +8,9 @@
 
 DAEMON_HOME="$HOME/.teritorid"
 DAEMON_NAME="teritorid"
-NODE1_IP="161.97.155.94"
+NODE1_IP="38.242.232.202"
 RPC1="http://$NODE1_IP"
-RPC_PORT1=26657
+RPC_PORT1=29657
 INTERVAL=100
 
 # Let's check if JQ tool is installed

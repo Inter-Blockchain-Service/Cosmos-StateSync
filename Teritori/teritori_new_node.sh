@@ -13,12 +13,12 @@ REPO="https://github.com/TERITORI/teritori-chain"
 REPODIRECTORY="$HOME/teritori-chain"
 GENESIS="https://media.githubusercontent.com/media/TERITORI/teritori-mainnet-genesis/main/genesis.json"
 BINARYNAME="teritorid"
-VERSION="v1.2.0"
+VERSION="v1.3.0"
 DAEMON_HOME="$HOME/.teritorid"
 CHAINID="teritori-1"
 SEEDS=""
-RPC1="http://161.97.155.94"
-RPC_PORT1=26657
+RPC1="http://38.242.232.202"
+RPC_PORT1=29657
 INTERVAL=100
 GOVERSION="1.19.2"
 
