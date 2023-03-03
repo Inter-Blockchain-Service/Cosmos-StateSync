@@ -35,7 +35,7 @@ read -p "ATTENTION! This script will clear the data folder (unsafe-reset-all) & 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "\nClearing the data folder & P2P Address Book"
-  $DAEMON_NAME unsafe-reset-all
+  $DAEMON_NAME tendermint unsafe-reset-all --keep-addr-book
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition from Microtick
