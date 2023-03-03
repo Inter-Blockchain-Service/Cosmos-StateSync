@@ -17,8 +17,8 @@ VERSION="v1.6.2"
 DAEMON_HOME="$HOME/.decentr"
 CHAINID="mainnet-3"
 SEEDS=""
-RPC1="http://75.119.157.167"
-RPC_PORT1=28657
+RPC1="https://decentr-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=1000
 GOVERSION="1.18.6"
 
