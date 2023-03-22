@@ -17,8 +17,8 @@ VERSION="v0.4.1"
 DAEMON_HOME="$HOME/.rizon"
 CHAINID="titan-1"
 SEEDS=""
-RPC1="http://38.242.232.202"
-RPC_PORT1=27657
+RPC1="https://rizon-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=100
 GOVERSION="1.18.6"
 
