@@ -9,9 +9,9 @@
 
 DAEMON_HOME="$HOME/.rizon"
 DAEMON_NAME="rizond"
-NODE1_IP="38.242.232.202"
-RPC1="http://$NODE1_IP"
-RPC_PORT1=27657
+NODE1_IP="rizon-rpc.ibs.team"
+RPC1="https://$NODE1_IP"
+RPC_PORT1=443
 INTERVAL=100
 
 # Let's check if JQ tool is installed
