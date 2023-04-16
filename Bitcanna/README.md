@@ -1,6 +1,6 @@
 # Statesync by Inter Blockchain Services
 
-First thing, if you are running a validator BACKUP your config directory.
+If you are running a validator BACKUP your priv_validator_key.json.
 
 ## You can use one of our scripts
 
