@@ -1,3 +1,5 @@
+Manual statesync :
+
 The first thing is to configure your node for statesync :
 
 ```
