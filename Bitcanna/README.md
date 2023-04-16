@@ -23,25 +23,20 @@ s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.bcna/config/config.toml
 ```
 
-After stop your node :
+After stop your node and clear your data :
 
 ```
 sudo systemctl stop bcnad
-```
-
-Clear your data directory :
-
-```
 bcnad tendermint unsafe-reset-all --home $HOME/.bcna --keep-addr-book
 ```
 
-start your node and wait the sync :
+Then start bcna daemon and wait the sync :
 
 ```
 bcnad start
 ```
 
-When your node is sync stop tour daemon with Ctrl + c, disable statesync and restart your service :
+Finally when your node is sync stop tour daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
 sed -E -i 's/enable = true/enable = false/' HOME/.bcna/config/config.toml
