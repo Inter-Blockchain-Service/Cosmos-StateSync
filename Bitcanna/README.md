@@ -1,12 +1,12 @@
-#Statesync by Inter Blockchain Services
+# Statesync by Inter Blockchain Services
 
-##You can use one of our scripts
+## You can use one of our scripts
 
 XXXX_new_node.sh script can be used on a FRESH VPS. It will update your system, install go, compile the binary, statesynced chain and will ask you to create a service or not. If there is go installed, it will remove and reinstall it.
 
 XXXX_existing_node.sh script will put the good params in config.toml for statesync, clear your data, sync your node, and then disabled state sync. Once your node is sync , please consider to make a service .
 
-##Or copy and paste the following commands
+## Or copy and paste the following commands
 
 The first thing is to configure your node for statesync :
 
