@@ -13,14 +13,14 @@ REPO="https://github.com/desmos-labs/desmos"
 REPODIRECTORY="$HOME/desmos"
 GENESIS="https://ibs.team/statesync/Desmos/genesis.json"
 BINARYNAME="desmos"
-VERSION="v2.4.0"
+VERSION="v4.8.0"
 DAEMON_HOME="$HOME/.desmos"
 CHAINID="desmos-mainnet"
 SEEDS=""
 RPC1="http://185.249.227.231"
 RPC_PORT1=27657
 INTERVAL=1000
-GOVERSION="1.18.6"
+GOVERSION="1.19.3"
 
 clear
 echo "###################################################################"
