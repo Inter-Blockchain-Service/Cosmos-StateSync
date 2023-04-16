@@ -1,5 +1,7 @@
 # Statesync by Inter Blockchain Services
 
+First thing, if you are running a validator BACKUP your config directory.
+
 ## You can use one of our scripts
 
 bcna_new_node.sh script can be used on a FRESH VPS. It will update your system, install go, compile the binary, statesynced chain and will ask you to create a service or not. If there is go installed, it will remove and reinstall it.
