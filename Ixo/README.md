@@ -32,13 +32,13 @@ sudo systemctl stop ixod
 ixod tendermint unsafe-reset-all --home $HOME/.ixod --keep-addr-book
 ```
 
-Then start ixod daemon and wait the sync :
+Then start ixo daemon and wait the sync :
 
 ```
 ixod start
 ```
 
-Finally when your node is sync stop tour daemon with Ctrl + c, disable statesync and restart your service :
+Finally when your node is sync stop the daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
 sed -E -i 's/enable = true/enable = false/' HOME/.ixod/config/config.toml

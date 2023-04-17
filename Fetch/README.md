@@ -32,13 +32,13 @@ sudo systemctl stop fetchd
 fetchd tendermint unsafe-reset-all --home $HOME/.fetchd --keep-addr-book
 ```
 
-Then start fetchd daemon and wait the sync :
+Then start fetch daemon and wait the sync :
 
 ```
 fetchd start
 ```
 
-Finally when your node is sync stop tour daemon with Ctrl + c, disable statesync and restart your service :
+Finally when your node is sync stop the daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
 sed -E -i 's/enable = true/enable = false/' HOME/.fetchd/config/config.toml

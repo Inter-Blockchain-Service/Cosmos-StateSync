@@ -32,13 +32,13 @@ sudo systemctl stop bcnad
 bcnad tendermint unsafe-reset-all --home $HOME/.bcna --keep-addr-book
 ```
 
-Then start bcna daemon and wait the sync :
+Then start bitcanna daemon and wait the sync :
 
 ```
 bcnad start
 ```
 
-Finally when your node is sync stop tour daemon with Ctrl + c, disable statesync and restart your service :
+Finally when your node is sync stop the daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
 sed -E -i 's/enable = true/enable = false/' HOME/.bcna/config/config.toml
