@@ -32,13 +32,13 @@ sudo systemctl stop teritorid
 teritorid tendermint unsafe-reset-all --home $HOME/.teritorid --keep-addr-book
 ```
 
-Then start teritorid daemon and wait the sync :
+Then start teritori daemon and wait the sync :
 
 ```
 teritorid start
 ```
 
-Finally when your node is sync stop tour daemon with Ctrl + c, disable statesync and restart your service :
+Finally when your node is sync stop your daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
 sed -E -i 's/enable = true/enable = false/' HOME/.teritorid/config/config.toml

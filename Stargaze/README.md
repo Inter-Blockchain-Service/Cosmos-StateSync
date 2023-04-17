@@ -32,7 +32,7 @@ sudo systemctl stop starsd
 starsd tendermint unsafe-reset-all --home $HOME/.starsd --keep-addr-book
 ```
 
-Then start starsd daemon and wait the sync :
+Then start stargaze daemon and wait the sync :
 
 ```
 starsd start

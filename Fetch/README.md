@@ -32,7 +32,7 @@ sudo systemctl stop fetchd
 fetchd tendermint unsafe-reset-all --home $HOME/.fetchd --keep-addr-book
 ```
 
-Then start fetchd daemon and wait the sync :
+Then start fetch daemon and wait the sync :
 
 ```
 fetchd start

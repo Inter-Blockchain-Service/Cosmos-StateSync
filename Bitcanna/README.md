@@ -32,7 +32,7 @@ sudo systemctl stop bcnad
 bcnad tendermint unsafe-reset-all --home $HOME/.bcna --keep-addr-book
 ```
 
-Then start bcna daemon and wait the sync :
+Then start bitcanna daemon and wait the sync :
 
 ```
 bcnad start

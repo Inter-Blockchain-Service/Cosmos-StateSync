@@ -32,7 +32,7 @@ sudo systemctl stop ixod
 ixod tendermint unsafe-reset-all --home $HOME/.ixod --keep-addr-book
 ```
 
-Then start ixod daemon and wait the sync :
+Then start ixo daemon and wait the sync :
 
 ```
 ixod start
