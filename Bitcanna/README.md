@@ -14,6 +14,12 @@ chmod +x bcna_new_node.sh
 
 bcna_existing_node.sh script will put the good params in config.toml for statesync, clear your data, sync your node, and then disabled state sync. Once your node is sync , please consider to make a service .
 
+```
+wget https://raw.githubusercontent.com/Inter-Blockchain-Service/Cosmos-StateSync/main/Bitcanna/bcna_existing_node.sh
+chmod +x bcna_existing_node.sh
+./bcna_existing_node.sh
+```
+
 ## Or copy and paste the following commands
 
 The first thing is to configure your node for statesync :
