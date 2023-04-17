@@ -17,8 +17,8 @@ VERSION="v1.6.3"
 DAEMON_HOME="$HOME/.bcna"
 CHAINID="bitcanna-1"
 SEEDS=""
-RPC1="http://38.242.232.202"
-RPC_PORT1=26657
+RPC1="https://bcna-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=1000
 GOVERSION="1.19.5"
 
