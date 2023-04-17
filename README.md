@@ -1,6 +1,6 @@
 # Cosmos-StateSync
 
-First thing, if you are running a validator BACKUP your config directory.
+First thing, if you are running a validator BACKUP your priv_validator_key.json.
 
 Choose the network you wan't to sync, you will find manual step in readme, or you can use one of our scripts.
 
