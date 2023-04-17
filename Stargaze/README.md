@@ -38,7 +38,7 @@ Then start stargaze daemon and wait the sync :
 starsd start
 ```
 
-Finally when your node is sync stop tour daemon with Ctrl + c, disable statesync and restart your service :
+Finally when your node is sync stop the daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
 sed -E -i 's/enable = true/enable = false/' HOME/.starsd/config/config.toml

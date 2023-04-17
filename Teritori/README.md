@@ -38,7 +38,7 @@ Then start teritori daemon and wait the sync :
 teritorid start
 ```
 
-Finally when your node is sync stop your daemon with Ctrl + c, disable statesync and restart your service :
+Finally when your node is sync stop the daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
 sed -E -i 's/enable = true/enable = false/' HOME/.teritorid/config/config.toml
