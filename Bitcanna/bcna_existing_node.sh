@@ -9,10 +9,10 @@
 
 DAEMON_HOME="$HOME/.bcna"
 DAEMON_NAME="bcnad"
-NODE1_IP="38.242.232.202"
-RPC1="http://$NODE1_IP"
-RPC_PORT1=26657
-INTERVAL=100
+NODE1_IP="bcna-rpc.ibs.team"
+RPC1="https://$NODE1_IP"
+RPC_PORT1=443
+INTERVAL=2000
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
