@@ -17,8 +17,8 @@ VERSION="v4.8.0"
 DAEMON_HOME="$HOME/.desmos"
 CHAINID="desmos-mainnet"
 SEEDS=""
-RPC1="http://185.249.227.231"
-RPC_PORT1=27657
+RPC1="https://desmos-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=1000
 GOVERSION="1.18.9"
 

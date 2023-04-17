@@ -41,7 +41,7 @@ After stop your node and clear your data :
 
 ```
 sudo systemctl stop decentrd
-decentrd tendermint unsafe-reset-all --home $HOME/.decentr --keep-addr-book
+decentrd tendermint unsafe-reset-all --home $HOME/.decentr
 ```
 
 Then start decentr daemon and wait the sync :
