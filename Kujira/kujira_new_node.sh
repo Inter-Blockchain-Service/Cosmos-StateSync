@@ -11,16 +11,16 @@
 set -e
 REPO="https://github.com/Team-Kujira/core.git"
 REPODIRECTORY="$HOME/core"
-GENESIS="https://ibs.team/statesync/Kujira/genesis.json"
+GENESIS="https://raw.githubusercontent.com/Team-Kujira/networks/master/mainnet/kaiyo-1.json"
 BINARYNAME="kujirad"
 VERSION="0.8.4-mainnet"
 DAEMON_HOME="$HOME/.kujira"
 CHAINID="kaiyo-1"
 SEEDS=""
-RPC1="http://75.119.157.167"
-RPC_PORT1=30657
+RPC1="https://kujira-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.19.7"
+GOVERSION="1.19.5"
 
 clear
 echo "###################################################################"
