@@ -9,7 +9,7 @@
 
 
 set -e
-REPO="https://github.com/ixofoundation/ixo-blockchain"
+REPO="https://github.com/jayjay-crypto/ixo-blockchain"
 REPODIRECTORY="$HOME/ixo-blockchain"
 GENESIS="https://github.com/ixofoundation/genesis/raw/main/ixo-5/genesis.json.tar.gz"
 BINARYNAME="ixod"
@@ -84,7 +84,7 @@ sleep 2
 
   git clone $REPO
   cd $REPODIRECTORY
-  git checkout $VERSION
+  # git checkout $VERSION
   make install
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
