@@ -2,24 +2,24 @@
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 # You need config in two peers (avoid seed servers) this values in app.toml:
 #     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
+#     snapshot-interval = 2000
+#     snapshot-keep-recent = 2
 # Pruning should be fine tuned also, for this testings is set to nothing
 #     pruning = "default"
 
 
 set -e
-REPO="https://github.com/ixofoundation/ixo-blockchain"
+REPO="https://github.com/jayjay-crypto/ixo-blockchain"
 REPODIRECTORY="$HOME/ixo-blockchain"
-GENESIS="https://raw.githubusercontent.com/Remi-IBS/genesis-ixo-4/main/genesis.json"
+GENESIS="https://github.com/ixofoundation/genesis/raw/main/ixo-5/genesis.json.tar.gz"
 BINARYNAME="ixod"
 VERSION="v0.20.0"
 DAEMON_HOME="$HOME/.ixod"
-CHAINID="ixo-4"
+CHAINID="ixo-5"
 SEEDS=""
-RPC1="http://75.119.157.167"
-RPC_PORT1=32657
-INTERVAL=1000
+RPC1="https://ixo-rpc.ibs.team"
+RPC_PORT1=443
+INTERVAL=2000
 GOVERSION="1.19.4"
 
 clear
@@ -84,12 +84,14 @@ sleep 2
 
   git clone $REPO
   cd $REPODIRECTORY
-  git checkout $VERSION
+  # git checkout $VERSION
   make install
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json 
-  curl -s $GENESIS > $DAEMON_HOME/config/genesis.json
+  wget $GENESIS 
+  tar -xf genesis.json.tar.gz -C $DAEMON_HOME/config/
+  rm genesis.json.tar.gz
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark from Microtick addition

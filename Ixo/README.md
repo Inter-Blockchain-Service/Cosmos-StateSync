@@ -5,10 +5,28 @@ If you are running a validator BACKUP your priv_validator_key.json.
 ## You can use one of our scripts
 
 ixo_new_node.sh script can be used on a FRESH VPS. It will update your system, install go, compile the binary, statesynced chain and will ask you to create a service or not. If there is go installed, it will remove and reinstall it.
+The script use a fork of main ixo-blockchain to enable statesync with wasm.
+
+```
+wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Ixo/ixo_new_node.sh
+chmod +x ixo_new_node.sh
+./ixo_new_node.sh
+```
 
 ixo_existing_node.sh script will put the good params in config.toml for statesync, clear your data, sync your node, and then disabled state sync. Once your node is sync , please consider to make a service .
+Ixo does not support for now statesync because of wasm with official binary you have to use :
+https://github.com/jayjay-crypto/ixo-blockchain
+
+```
+wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Ixo/ixo_new_node.sh
+chmod +x ixo_new_node.sh
+./ixo_new_node.sh
+```
 
 ## Or copy and paste the following commands
+
+Ixo does not support for now statesync because of wasm with official binary you have to use :
+https://github.com/jayjay-crypto/ixo-blockchain
 
 The first thing is to configure your node for statesync :
 
