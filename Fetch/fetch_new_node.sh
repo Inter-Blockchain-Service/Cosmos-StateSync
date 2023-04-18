@@ -19,7 +19,7 @@ CHAINID="fetchhub-4"
 SEEDS=""
 RPC1="https://fetch-rpc.ibs.team"
 RPC_PORT1=443
-INTERVAL=1000
+INTERVAL=2000
 GOVERSION="1.18.6"
 
 clear
