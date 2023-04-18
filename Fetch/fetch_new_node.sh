@@ -17,8 +17,8 @@ VERSION="v0.10.6"
 DAEMON_HOME="$HOME/.fetchd"
 CHAINID="fetchhub-4"
 SEEDS=""
-RPC1="http://75.119.157.167"
-RPC_PORT1=29657
+RPC1="https://fetch-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=1000
 GOVERSION="1.18.6"
 
