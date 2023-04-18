@@ -25,7 +25,7 @@ chmod +x ixo_new_node.sh
 
 ## Or copy and paste the following commands
 
-Ixo does not support for now statesync because of wasm with official binary you have to use :
+Ixo does not support for now statesync with official binary, because of wasm, you have to use :
 https://github.com/jayjay-crypto/ixo-blockchain
 
 The first thing is to configure your node for statesync :
