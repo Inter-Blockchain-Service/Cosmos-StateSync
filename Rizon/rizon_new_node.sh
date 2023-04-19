@@ -19,7 +19,7 @@ CHAINID="titan-1"
 SEEDS=""
 RPC1="https://rizon-rpc.ibs.team"
 RPC_PORT1=443
-INTERVAL=100
+INTERVAL=1000
 GOVERSION="1.18.6"
 
 clear
