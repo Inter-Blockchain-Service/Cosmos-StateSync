@@ -6,7 +6,19 @@ If you are running a validator BACKUP your priv_validator_key.json.
 
 rizon_new_node.sh script can be used on a FRESH VPS. It will update your system, install go, compile the binary, statesynced chain and will ask you to create a service or not. If there is go installed, it will remove and reinstall it.
 
+```
+wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Rizon/rizon_new_node.sh
+chmod +x rizon_new_node.sh
+./rizon_new_node.sh
+```
+
 rizon_existing_node.sh script will put the good params in config.toml for statesync, clear your data, sync your node, and then disabled state sync. Once your node is sync , please consider to make a service .
+
+```
+wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Rizon/rizon_existing_node.sh
+chmod +x rizon_existing_node.sh
+./rizon_existing_node.sh
+```
 
 ## Or copy and paste the following commands
 
