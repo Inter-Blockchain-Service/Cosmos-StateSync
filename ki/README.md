@@ -4,7 +4,7 @@ If you are running a validator BACKUP your priv_validator_key.json.
 
 ## You can use one of our scripts
 
-ki_new_node.sh script can be used on a FRESH VPS. It will update your system, install go, compile the binary, statesynced chain and will ask you to create a service or not. If there is go installed, it will remove and reinstall it. The script use a fork of main ki-tools to enable statesync with wasm.
+ki_new_node.sh script can be used on a FRESH VPS. It will update your system, install go, compile the binary, statesynced chain and will ask you to create a service or not. If there is go installed, it will remove and reinstall it. The script use a fork of main ki-tools to enable statesync with wasm. https://github.com/jayjay-crypto/ki-tools
 
 ```
 wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Ki/ki_new_node.sh
