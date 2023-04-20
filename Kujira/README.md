@@ -7,7 +7,7 @@ If you are running a validator BACKUP your priv_validator_key.json.
 kujira_new_node.sh script can be used on a FRESH VPS. It will update your system, install go, compile the binary, statesynced chain and will ask you to create a service or not. If there is go installed, it will remove and reinstall it.
 
 ```
-wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Kujira/kujira_new_node.sh
+wget https://raw.githubusercontent.com/jayjay-crypto/Cosmos-StateSync/main/Kujira/kujira_new_node.sh
 chmod +x kujira_new_node.sh
 ./kujira_new_node.sh
 ```
@@ -15,7 +15,7 @@ chmod +x kujira_new_node.sh
 kujira_existing_node.sh script will put the good params in config.toml for statesync, clear your data, sync your node, and then disabled state sync. Once your node is sync , please consider to make a service.
 
 ```
-wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Kujira/kujira_existing_node.sh
+wget https://raw.githubusercontent.com/jayjay-crypto/Cosmos-StateSync/main/Kujira/kujira_existing_node.sh
 chmod +x kujira_existing_node.sh
 ./kujira_existing_node.sh
 ```
