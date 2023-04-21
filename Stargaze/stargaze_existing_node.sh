@@ -9,10 +9,9 @@
 
 DAEMON_HOME="$HOME/.starsd"
 DAEMON_NAME="starsd"
-NODE1_IP="38.242.232.202"
-RPC1="http://$NODE1_IP"
-RPC_PORT1=28657
-INTERVAL=100
+RPC1="https://stargaze-rpc.ibs.team"
+RPC_PORT1=443
+INTERVAL=1000
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
