@@ -9,7 +9,7 @@
 
 
 set -e
-REPO="https://github.com/Team-Kujira/core.git"
+REPO="https://github.com/KYVENetwork/chain"
 REPODIRECTORY="$HOME/core"
 GENESIS="https://raw.githubusercontent.com/KYVENetwork/networks/main/kyve-1/genesis.json"
 BINARYNAME="kyved"

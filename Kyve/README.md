@@ -7,7 +7,7 @@ If you are running a validator BACKUP your priv_validator_key.json.
 kyve_new_node.sh script can be used on a FRESH VPS. It will update your system, install go, compile the binary, statesynced chain and will ask you to create a service or not. If there is go installed, it will remove and reinstall it.
 
 ```
-wget https://raw.githubusercontent.com/Inter-Blockchain-Service/Cosmos-StateSync/main/kyve/kyve_new_node.sh
+wget https://raw.githubusercontent.com/Inter-Blockchain-Service/Cosmos-StateSync/main/Kyve/kyve_new_node.sh
 chmod +x kyve_new_node.sh
 ./kyve_new_node.sh
 ```
@@ -15,7 +15,7 @@ chmod +x kyve_new_node.sh
 kyve_existing_node.sh script will put the good params in config.toml for statesync, clear your data, sync your node, and then disabled state sync. Once your node is sync , please consider to make a service.
 
 ```
-wget https://raw.githubusercontent.com/Inter-Blockchain-Service/Cosmos-StateSync/main/kyve/kyve_existing_node.sh
+wget https://raw.githubusercontent.com/Inter-Blockchain-Service/Cosmos-StateSync/main/Kyve/kyve_existing_node.sh
 chmod +x kyve_existing_node.sh
 ./kyve_existing_node.sh
 ```
@@ -53,6 +53,6 @@ kyved start
 Finally when your node is sync stop the daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
-sed -E -i 's/enable = true/enable = false/' HOME/.kyve/config/config.toml
+sed -E -i 's/enable = true/enable = false/' $HOME/.kyve/config/config.toml
 sudo systemctl start kyved
 ```
