@@ -12,7 +12,7 @@ DAEMON_NAME="ixod"
 NODE1_IP="75.119.157.167"
 RPC1="http://$NODE1_IP"
 RPC_PORT1=32657
-INTERVAL=1000
+INTERVAL=100
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
@@ -35,7 +35,7 @@ read -p "ATTENTION! This script will clear the data folder (unsafe-reset-all) & 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "\nClearing the data folder & P2P Address Book"
-  $DAEMON_NAME unsafe-reset-all
+  $DAEMON_NAME tendermint unsafe-reset-all
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition from Microtick

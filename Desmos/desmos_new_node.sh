@@ -17,7 +17,7 @@ VERSION="v2.4.0"
 DAEMON_HOME="$HOME/.desmos"
 CHAINID="desmos-mainnet"
 SEEDS=""
-RPC1="http://161.97.156.216"
+RPC1="http://185.249.227.231"
 RPC_PORT1=27657
 INTERVAL=1000
 GOVERSION="1.18.6"
@@ -38,7 +38,7 @@ echo "   install toolchain and ensure accurate time synchronization"
 echo " "
 echo "##################################################################"
 sleep 3
-sudo apt-get install make build-essential gcc git jq chrony -y
+sudo apt-get install make build-essential gcc git jq chrony curl -y
 
 clear
 echo "##################################################################"

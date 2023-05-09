@@ -13,7 +13,7 @@ REPO="https://github.com/BitCannaGlobal/bcna.git"
 REPODIRECTORY="$HOME/bcna"
 GENESIS="https://raw.githubusercontent.com/BitCannaGlobal/bcna/main/genesis.json"
 BINARYNAME="bcnad"
-VERSION="v1.4.2"
+VERSION="v1.5.3"
 DAEMON_HOME="$HOME/.bcna"
 CHAINID="bitcanna-1"
 SEEDS=""
@@ -38,7 +38,7 @@ echo "   install toolchain and ensure accurate time synchronization"
 echo " "
 echo "##################################################################"
 sleep 3
-sudo apt-get install make build-essential gcc git jq chrony -y
+sudo apt-get install make build-essential gcc git jq chrony curl -y
 
 clear
 echo "##################################################################"

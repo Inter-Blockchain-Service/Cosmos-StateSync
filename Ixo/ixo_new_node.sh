@@ -11,11 +11,11 @@
 set -e
 REPO="https://github.com/ixofoundation/ixo-blockchain"
 REPODIRECTORY="$HOME/ixo-blockchain"
-GENESIS="https://ibs.team/statesync/Ixo/genesis.json"
+GENESIS="https://raw.githubusercontent.com/Remi-IBS/genesis-ixo-4/main/genesis.json"
 BINARYNAME="ixod"
-VERSION="v0.16.2"
+VERSION="v0.19.1"
 DAEMON_HOME="$HOME/.ixod"
-CHAINID="impacthub-3"
+CHAINID="ixo-4"
 SEEDS=""
 RPC1="http://75.119.157.167"
 RPC_PORT1=32657
@@ -38,7 +38,7 @@ echo "   install toolchain and ensure accurate time synchronization"
 echo " "
 echo "##################################################################"
 sleep 3
-sudo apt-get install make build-essential gcc git jq chrony -y
+sudo apt-get install make build-essential gcc git jq chrony curl -y
 
 clear
 echo "##################################################################"
@@ -117,7 +117,7 @@ sleep 2
 
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025uixo\"/' $DAEMON_HOME/config/app.toml
 
-  $BINARYNAME unsafe-reset-all --home $DAEMON_HOME
+  $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
   clear
 

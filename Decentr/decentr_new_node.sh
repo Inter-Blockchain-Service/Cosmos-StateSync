@@ -13,12 +13,12 @@ REPO="https://github.com/Decentr-net/decentr"
 REPODIRECTORY="$HOME/decentr"
 GENESIS="https://ibs.team/statesync/Decentr/genesis.json"
 BINARYNAME="decentrd"
-VERSION="v1.5.7"
+VERSION="v1.6.2"
 DAEMON_HOME="$HOME/.decentr"
 CHAINID="mainnet-3"
 SEEDS=""
-RPC1="http://75.119.157.167"
-RPC_PORT1=28657
+RPC1="https://decentr-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=1000
 GOVERSION="1.18.6"
 
@@ -38,7 +38,7 @@ echo "   install toolchain and ensure accurate time synchronization"
 echo " "
 echo "##################################################################"
 sleep 3
-sudo apt-get install make build-essential gcc git jq chrony -y
+sudo apt-get install make build-essential gcc git jq chrony curl -y
 
 clear
 echo "##################################################################"
@@ -117,7 +117,7 @@ sleep 2
 
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025udec\"/' $DAEMON_HOME/config/app.toml
 
-  $BINARYNAME unsafe-reset-all --home $DAEMON_HOME
+  $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
   clear
 

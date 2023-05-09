@@ -13,13 +13,13 @@ REPO="https://github.com/Sifchain/sifnode"
 REPODIRECTORY="$HOME/sifnode"
 GENESIS="https://ibs.team/statesync/Sifchain/genesis.json"
 BINARYNAME="sifnoded"
-VERSION="v1.0-beta.12-issuefix"
+VERSION="v1.0.14-beta"
 DAEMON_HOME="$HOME/.sifnoded"
 CHAINID="sifchain-1"
 SEEDS=""
-RPC1="http://161.97.156.216"
-RPC_PORT1=30657
-INTERVAL=1000
+RPC1="http://185.249.227.231"
+RPC_PORT1=26657
+INTERVAL=100
 GOVERSION="1.18.6"
 
 clear
@@ -38,7 +38,7 @@ echo "   install toolchain and ensure accurate time synchronization"
 echo " "
 echo "##################################################################"
 sleep 3
-sudo apt-get install make build-essential gcc git jq chrony -y
+sudo apt-get install make build-essential gcc git jq chrony curl -y
 
 clear
 echo "##################################################################"
