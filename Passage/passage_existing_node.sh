@@ -9,8 +9,8 @@
 DAEMON_HOME="$HOME/.pasage"
 DAEMON_NAME="passage"
 NODE1_IP="75.119.157.167"
-RPC1="http://$NODE1_IP"
-RPC_PORT1=31657
+RPC1="https://passage-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=1000
 
 # Let's check if JQ tool is installed

@@ -9,10 +9,10 @@
 
 DAEMON_HOME="$HOME/.rizon"
 DAEMON_NAME="rizond"
-NODE1_IP="38.242.232.202"
-RPC1="http://$NODE1_IP"
-RPC_PORT1=27657
-INTERVAL=100
+NODE1_IP="rizon-rpc.ibs.team"
+RPC1="https://$NODE1_IP"
+RPC_PORT1=443
+INTERVAL=1000
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
@@ -35,7 +35,7 @@ read -p "ATTENTION! This script will clear the data folder (unsafe-reset-all) & 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "\nClearing the data folder & P2P Address Book"
-  $DAEMON_NAME unsafe-reset-all
+  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME --keep-addr-book
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition from Microtick

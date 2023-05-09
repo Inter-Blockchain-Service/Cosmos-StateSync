@@ -9,8 +9,8 @@
 
 DAEMON_HOME="$HOME/.kujira"
 DAEMON_NAME="kujirad"
-RPC1="http://75.119.157.167"
-RPC_PORT1=30657
+RPC1="https://kujira-rpc.ibs.team"
+RPC_PORT1=443
 INTERVAL=1000
 
 # Let's check if JQ tool is installed
@@ -34,7 +34,7 @@ read -p "ATTENTION! This script will clear the data folder (unsafe-reset-all) & 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "\nClearing the data folder & P2P Address Book"
-  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME
+  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME --keep-addr-book
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition from Microtick

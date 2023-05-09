@@ -13,14 +13,14 @@ REPO="https://github.com/public-awesome/stargaze"
 REPODIRECTORY="$HOME/stargaze"
 GENESIS="https://ibs.team/statesync/Stargaze/genesis.json"
 BINARYNAME="starsd"
-VERSION="v7.5.0"
+VERSION="v9.0.0"
 DAEMON_HOME="$HOME/.starsd"
 CHAINID="stargaze-1"
 SEEDS=""
-RPC1="http://38.242.232.202"
-RPC_PORT1=28657
-INTERVAL=100
-GOVERSION="1.18.6"
+RPC1="https://stargaze-rpc.ibs.team"
+RPC_PORT1=443
+INTERVAL=1000
+GOVERSION="1.20.2"
 
 clear
 echo "###################################################################"

@@ -20,7 +20,7 @@ SEEDS=""
 RPC1="https://decentr-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.18.6"
+GOVERSION="1.19.5"
 
 clear
 echo "###################################################################"
