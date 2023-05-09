@@ -59,6 +59,6 @@ ixod start
 Finally when your node is sync stop the daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
-sed -E -i 's/enable = true/enable = false/' HOME/.ixod/config/config.toml
+sed -E -i 's/enable = true/enable = false/' $HOME/.ixod/config/config.toml
 sudo systemctl start ixod
 ```
