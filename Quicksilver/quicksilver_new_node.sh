@@ -137,7 +137,7 @@ sleep 2
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo  "[Unit]
-  Description=kujira
+  Description=$BINARYNAME Node
   After=network-online.target
   
   [Service]
