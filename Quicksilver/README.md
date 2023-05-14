@@ -34,14 +34,14 @@ TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.bloc
 sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.quicksilver/config/config.toml
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.quicksilverd/config/config.toml
 ```
 
 After stop your node and clear your data :
 
 ```
 sudo systemctl stop quicksilverd
-quicksilverd tendermint unsafe-reset-all --home $HOME/.quicksilver --keep-addr-book
+quicksilverd tendermint unsafe-reset-all --home $HOME/.quicksilverd --keep-addr-book
 ```
 
 Then start quicksilver daemon and wait the sync :
@@ -53,6 +53,6 @@ quicksilverd start
 Finally when your node is sync stop the daemon with Ctrl + c, disable statesync and restart your service :
 
 ```
-sed -E -i 's/enable = true/enable = false/' $HOME/.quicksilver/config/config.toml
+sed -E -i 's/enable = true/enable = false/' $HOME/.quicksilverd/config/config.toml
 sudo systemctl start quicksilverd
 ```
