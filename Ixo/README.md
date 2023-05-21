@@ -8,7 +8,7 @@ ixo_new_node.sh script can be used on a FRESH VPS. It will update your system, i
 The script use a fork of main ixo-blockchain to enable statesync with wasm.
 
 ```
-wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Ixo/ixo_new_node.sh
+wget wget https://raw.githubusercontent.com/Inter-Blockchain-Service/Cosmos-StateSync/main/Ixo/ixo_new_node.sh
 chmod +x ixo_new_node.sh
 ./ixo_new_node.sh
 ```
@@ -18,9 +18,9 @@ Ixo does not support for now statesync because of wasm with official binary you 
 https://github.com/jayjay-crypto/ixo-blockchain
 
 ```
-wget https://github.com/Inter-Blockchain-Service/Cosmos-StateSync/blob/main/Ixo/ixo_new_node.sh
-chmod +x ixo_new_node.sh
-./ixo_new_node.sh
+wget wget https://raw.githubusercontent.com/Inter-Blockchain-Service/Cosmos-StateSync/main/Ixo/ixo_existing_node.sh
+chmod +x ixo_existing_node.sh
+./ixo_existing_node.sh
 ```
 
 ## Or copy and paste the following commands
