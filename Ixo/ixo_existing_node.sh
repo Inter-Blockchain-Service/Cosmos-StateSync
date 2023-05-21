@@ -12,7 +12,7 @@ DAEMON_NAME="ixod"
 NODE1_IP="ixo-rpc.ibs.team"
 RPC1="https://$NODE1_IP"
 RPC_PORT1=443
-INTERVAL=100
+INTERVAL=200
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
