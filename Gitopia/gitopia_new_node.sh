@@ -119,8 +119,6 @@ sleep 2
 
   sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0ulore\"/' $DAEMON_HOME/config/app.toml
 
-  sed -E -i -s 's/timeout_commit = \".*\"/timeout_commit = \"1500ms"/' $DAEMON_HOME/config/config.toml
-
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
   clear
