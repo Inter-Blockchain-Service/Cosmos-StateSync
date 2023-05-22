@@ -6,7 +6,7 @@
 #     snapshot-interval = 1000
 #     snapshot-keep-recent = 10
 
-DAEMON_HOME="$HOME/.pasage"
+DAEMON_HOME="$HOME/.passage"
 DAEMON_NAME="passage"
 NODE1_IP="75.119.157.167"
 RPC1="https://passage-rpc.ibs.team"
