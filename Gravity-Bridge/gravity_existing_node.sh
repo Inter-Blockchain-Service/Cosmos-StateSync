@@ -1,13 +1,14 @@
+#!/bin/bash
 # Based on the work of Joe (Chorus-One) for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 # Updated by Raul Bernal for Bitcanna - https://github.com/BitCannaCommunity/cosmos-statesync_client
 # RPC by Inter Blockchain Services
 
-DAEMON_HOME="$HOME/.fetchd"
-DAEMON_NAME="fetchd"
-NODE1_IP="fetch-rpc.ibs.team"
+DAEMON_HOME="$HOME/.gravity"
+DAEMON_NAME="gravity"
+NODE1_IP="gravity-rpc.ibs.team"
 RPC1="https://$NODE1_IP"
 RPC_PORT1=443
-INTERVAL=2000
+INTERVAL=1000
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
