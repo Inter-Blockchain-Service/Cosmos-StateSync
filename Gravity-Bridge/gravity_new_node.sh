@@ -2,15 +2,15 @@
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 
 set -e
-REPO="https://github.com/Decentr-net/decentr"
-REPODIRECTORY="$HOME/decentr"
-GENESIS="https://ibs.team/statesync/Decentr/genesis.json"
-BINARYNAME="decentrd"
-VERSION="v1.6.2"
-DAEMON_HOME="$HOME/.decentr"
-CHAINID="mainnet-3"
+REPO="https://github.com/Gravity-Bridge/Gravity-Bridge"
+REPODIRECTORY="$HOME/Gravity-Bridge/module"
+GENESIS="https://raw.githubusercontent.com/Gravity-Bridge/Gravity-Docs/main/genesis.json"
+BINARYNAME="gravity"
+VERSION="v1.9.1"
+DAEMON_HOME="$HOME/.gravity"
+CHAINID="gravity-bridge-3"
 SEEDS=""
-RPC1="https://decentr-rpc.ibs.team"
+RPC1="https://gravity-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
 GOVERSION="1.19.5"
@@ -108,7 +108,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025udec\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.001ubcna\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
