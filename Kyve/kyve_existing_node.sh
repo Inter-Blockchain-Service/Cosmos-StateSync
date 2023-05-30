@@ -1,3 +1,4 @@
+#!/bin/bash
 # Based on the work of Joe (Chorus-One) for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 # Updated by Raul Bernal for Bitcanna - https://github.com/BitCannaCommunity/cosmos-statesync_client
 # RPC by Inter Blockchain Services
@@ -6,12 +7,11 @@
 #     snapshot-interval = 1000
 #     snapshot-keep-recent = 10
 
-DAEMON_HOME="$HOME/.teritorid"
-DAEMON_NAME="teritorid"
-NODE1_IP="38.242.232.202"
-RPC1="http://$NODE1_IP"
-RPC_PORT1=29657
-INTERVAL=100
+DAEMON_HOME="$HOME/.kyve"
+DAEMON_NAME="kyved"
+RPC1="https://kyve-rpc.ibs.team"
+RPC_PORT1=443
+INTERVAL=1000
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
@@ -34,7 +34,7 @@ read -p "ATTENTION! This script will clear the data folder (unsafe-reset-all) & 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "\nClearing the data folder & P2P Address Book"
-  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME
+  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME --keep-addr-book
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition from Microtick
@@ -58,8 +58,7 @@ then
   s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$RPC1:$RPC_PORT1,$RPC1:$RPC_PORT1\"| ; \
   s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
   s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
-  s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
-  s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
+  s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"|" $DAEMON_HOME/config/config.toml
 
   echo ##################################################################
   echo  "PLEASE HIT CTRL+C WHEN THE CHAIN IS SYNCED, Wait the last block"

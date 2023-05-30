@@ -9,18 +9,18 @@
 
 
 set -e
-REPO="https://github.com/TERITORI/teritori-chain"
-REPODIRECTORY="$HOME/teritori-chain"
-GENESIS="https://media.githubusercontent.com/media/TERITORI/teritori-mainnet-genesis/main/genesis.json"
-BINARYNAME="teritorid"
-VERSION="v1.3.1"
-DAEMON_HOME="$HOME/.teritorid"
-CHAINID="teritori-1"
+REPO="https://github.com/KYVENetwork/chain"
+REPODIRECTORY="$HOME/chain"
+GENESIS="https://raw.githubusercontent.com/KYVENetwork/networks/main/kyve-1/genesis.json"
+BINARYNAME="kyved"
+VERSION="v1.1.1"
+DAEMON_HOME="$HOME/.kyve"
+CHAINID="kyve-1"
 SEEDS=""
-RPC1="http://38.242.232.202"
-RPC_PORT1=29657
-INTERVAL=100
-GOVERSION="1.19.2"
+RPC1="https://kyve-rpc.ibs.team"
+RPC_PORT1=443
+INTERVAL=1000
+GOVERSION="1.20.2"
 
 clear
 echo "###################################################################"
@@ -85,7 +85,7 @@ sleep 2
   git clone $REPO
   cd $REPODIRECTORY
   git checkout $VERSION
-  make install
+  make install ENV=mainnet
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json 
@@ -115,7 +115,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.0025ustars\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.02ukyve\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
@@ -137,7 +137,7 @@ sleep 2
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo  "[Unit]
-  Description=$BINARYNAME 
+  Description=$BINARYNAME Node
   After=network-online.target
   
   [Service]
