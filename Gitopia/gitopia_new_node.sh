@@ -5,7 +5,7 @@ set -e
 REPO="https://github.com/gitopia/gitopia"
 REPODIRECTORY="$HOME/gitopia"
 BINARYNAME="gitopiad"
-VERSION="v2.1.0"
+VERSION="v2.1.1"
 DAEMON_HOME="$HOME/.gitopia"
 CHAINID="gitopia"
 SEEDS=""
