@@ -1,15 +1,10 @@
 # Based on the work of Joe (Chorus-One) for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 # Updated by Raul Bernal for Bitcanna - https://github.com/BitCannaCommunity/cosmos-statesync_client
 # RPC by Inter Blockchain Services
-# ours statesync config:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
 
 DAEMON_HOME="$HOME/.teritorid"
 DAEMON_NAME="teritorid"
-NODE1_IP="38.242.232.202"
-RPC1="http://$NODE1_IP"
+RPC1="https://teritori-rpc.ibs.team"
 RPC_PORT1=29657
 INTERVAL=100
 
