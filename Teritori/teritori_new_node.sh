@@ -1,12 +1,5 @@
 #!/bin/bash
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
-# You need config in two peers (avoid seed servers) this values in app.toml:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
-# Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "~default"
-
 
 set -e
 REPO="https://github.com/TERITORI/teritori-chain"
@@ -17,10 +10,10 @@ VERSION="v1.4.0"
 DAEMON_HOME="$HOME/.teritorid"
 CHAINID="teritori-1"
 SEEDS=""
-RPC1="http://38.242.232.202"
-RPC_PORT1=29657
-INTERVAL=100
-GOVERSION="1.19.2"
+RPC1="https://teritori-rpc.ibs.team"
+RPC_PORT1=443
+INTERVAL=1000
+GOVERSION="1.19.8"
 
 clear
 echo "###################################################################"
