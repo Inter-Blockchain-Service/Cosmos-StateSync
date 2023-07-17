@@ -2,18 +2,18 @@
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 
 set -e
-REPO="https://github.com/Decentr-net/decentr"
-REPODIRECTORY="$HOME/decentr"
-GENESIS="https://ibs.team/statesync/Decentr/genesis.json"
-BINARYNAME="decentrd"
-VERSION="v1.6.2"
-DAEMON_HOME="$HOME/.decentr"
-CHAINID="mainnet-3"
+REPO="https://github.com/TERITORI/teritori-chain"
+REPODIRECTORY="$HOME/teritori-chain"
+GENESIS="https://media.githubusercontent.com/media/TERITORI/teritori-mainnet-genesis/main/genesis.json"
+BINARYNAME="teritorid"
+VERSION="v1.4.0"
+DAEMON_HOME="$HOME/.teritorid"
+CHAINID="teritori-1"
 SEEDS=""
-RPC1="https://decentr-rpc.ibs.team"
+RPC1="https://teritori-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.19.5"
+GOVERSION="1.19.8"
 
 clear
 echo "###################################################################"
@@ -108,7 +108,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025udec\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.0025ustars\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
@@ -130,7 +130,7 @@ sleep 2
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo  "[Unit]
-  Description=$BINARYNAME
+  Description=$BINARYNAME 
   After=network-online.target
   
   [Service]

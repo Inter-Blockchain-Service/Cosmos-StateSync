@@ -2,12 +2,11 @@
 # Updated by Raul Bernal for Bitcanna - https://github.com/BitCannaCommunity/cosmos-statesync_client
 # RPC by Inter Blockchain Services
 
-DAEMON_HOME="$HOME/.fetchd"
-DAEMON_NAME="fetchd"
-NODE1_IP="fetch-rpc.ibs.team"
-RPC1="https://$NODE1_IP"
-RPC_PORT1=443
-INTERVAL=2000
+DAEMON_HOME="$HOME/.teritorid"
+DAEMON_NAME="teritorid"
+RPC1="https://teritori-rpc.ibs.team"
+RPC_PORT1=29657
+INTERVAL=100
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
@@ -30,7 +29,7 @@ read -p "ATTENTION! This script will clear the data folder (unsafe-reset-all) & 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "\nClearing the data folder & P2P Address Book"
-  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME --keep-addr-book
+  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark addition from Microtick

@@ -1,19 +1,12 @@
 #!/bin/bash
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
-# You need config in two peers (avoid seed servers) this values in app.toml:
-#     [state-sync]
-#     snapshot-interval = 2000
-#     snapshot-keep-recent = 2
-# Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "default"
-
 
 set -e
 REPO="https://github.com/jayjay-crypto/ixo-blockchain"
 REPODIRECTORY="$HOME/ixo-blockchain"
 GENESIS="https://github.com/ixofoundation/genesis/raw/main/ixo-5/genesis.json.tar.gz"
 BINARYNAME="ixod"
-VERSION="v0.20.0"
+VERSION="v0.20.1"
 DAEMON_HOME="$HOME/.ixod"
 CHAINID="ixo-5"
 SEEDS=""

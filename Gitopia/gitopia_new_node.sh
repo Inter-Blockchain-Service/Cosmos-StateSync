@@ -2,18 +2,17 @@
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 
 set -e
-REPO="https://github.com/Decentr-net/decentr"
-REPODIRECTORY="$HOME/decentr"
-GENESIS="https://ibs.team/statesync/Decentr/genesis.json"
-BINARYNAME="decentrd"
-VERSION="v1.6.2"
-DAEMON_HOME="$HOME/.decentr"
-CHAINID="mainnet-3"
+REPO="https://github.com/gitopia/gitopia"
+REPODIRECTORY="$HOME/gitopia"
+BINARYNAME="gitopiad"
+VERSION="v2.1.1"
+DAEMON_HOME="$HOME/.gitopia"
+CHAINID="gitopia"
 SEEDS=""
-RPC1="https://decentr-rpc.ibs.team"
+RPC1="https://gitopia-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.19.5"
+GOVERSION="1.20.2"
 
 clear
 echo "###################################################################"
@@ -31,7 +30,7 @@ echo "   install toolchain and ensure accurate time synchronization"
 echo " "
 echo "##################################################################"
 sleep 3
-sudo apt-get install make build-essential gcc git jq chrony curl -y
+sudo apt-get install make build-essential gcc git jq chrony curl lz4 -y
 
 clear
 echo "##################################################################"
@@ -82,7 +81,10 @@ sleep 2
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json 
-  curl -s $GENESIS > $DAEMON_HOME/config/genesis.json
+  
+  cd && git clone https://github.com/gitopia/mainnet && cd mainnet
+  tar -xzf genesis.tar.gz
+  cp genesis.json ~/.gitopia/config/genesis.json
 
   LATEST_HEIGHT=$(curl -s $RPC1:$RPC_PORT1/block | jq -r .result.block.header.height);
   BLOCK_HEIGHT=$((($(($LATEST_HEIGHT / $INTERVAL)) -10) * $INTERVAL)); #Mark from Microtick addition
@@ -108,7 +110,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025udec\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0ulore\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
@@ -130,7 +132,7 @@ sleep 2
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo  "[Unit]
-  Description=$BINARYNAME
+  Description= $BINARYNAME
   After=network-online.target
   
   [Service]

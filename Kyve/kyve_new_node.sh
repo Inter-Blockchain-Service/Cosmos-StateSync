@@ -1,19 +1,12 @@
 #!/bin/bash
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
-# You need config in two peers (avoid seed servers) this values in app.toml:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
-# Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "~default"
-
 
 set -e
 REPO="https://github.com/KYVENetwork/chain"
 REPODIRECTORY="$HOME/chain"
 GENESIS="https://raw.githubusercontent.com/KYVENetwork/networks/main/kyve-1/genesis.json"
 BINARYNAME="kyved"
-VERSION="v1.1.1"
+VERSION="v1.2.2"
 DAEMON_HOME="$HOME/.kyve"
 CHAINID="kyve-1"
 SEEDS=""

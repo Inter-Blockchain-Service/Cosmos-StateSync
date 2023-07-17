@@ -2,10 +2,6 @@
 # Based on the work of Joe (Chorus-One) for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 # Updated by Raul Bernal for Bitcanna - https://github.com/BitCannaCommunity/cosmos-statesync_client
 # RPC by Inter Blockchain Services
-# ours statesync config:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
 
 DAEMON_HOME="$HOME/.decentr"
 DAEMON_NAME="decentrd"
@@ -62,7 +58,6 @@ then
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-#  $DAEMON_NAME tendermint unsafe-reset-all --home $DAEMON_HOME
   echo ##################################################################
   echo  "PLEASE HIT CTRL+C WHEN THE CHAIN IS SYNCED, Wait the last block"
   echo ##################################################################

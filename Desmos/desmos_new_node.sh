@@ -1,26 +1,19 @@
 #!/bin/bash
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
-# You need config in two peers (avoid seed servers) this values in app.toml:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
-# Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "default"
-
 
 set -e
 REPO="https://github.com/desmos-labs/desmos"
 REPODIRECTORY="$HOME/desmos"
 GENESIS="https://ibs.team/statesync/Desmos/genesis.json"
 BINARYNAME="desmos"
-VERSION="v4.8.0"
+VERSION="v5.2.0"
 DAEMON_HOME="$HOME/.desmos"
 CHAINID="desmos-mainnet"
 SEEDS=""
 RPC1="https://desmos-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.18.9"
+GOVERSION="1.20.4"
 
 clear
 echo "###################################################################"

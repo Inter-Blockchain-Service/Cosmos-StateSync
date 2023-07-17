@@ -1,11 +1,5 @@
 #!/bin/bash
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
-# You need config in two peers (avoid seed servers) this values in app.toml:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
-# Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "default"
 
 
 set -e
@@ -13,14 +7,14 @@ REPO="https://github.com/BitCannaGlobal/bcna.git"
 REPODIRECTORY="$HOME/bcna"
 GENESIS="https://raw.githubusercontent.com/BitCannaGlobal/bcna/main/genesis.json"
 BINARYNAME="bcnad"
-VERSION="v1.6.3"
+VERSION="v2.0.2"
 DAEMON_HOME="$HOME/.bcna"
 CHAINID="bitcanna-1"
 SEEDS=""
 RPC1="https://bcna-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.19.5"
+GOVERSION="1.20.2"
 
 clear
 echo "###################################################################"

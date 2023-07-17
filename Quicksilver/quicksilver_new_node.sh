@@ -1,19 +1,12 @@
 #!/bin/bash
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
-# You need config in two peers (avoid seed servers) this values in app.toml:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
-# Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "~default"
-
 
 set -e
 REPO="https://github.com/ingenuity-build/quicksilver"
 REPODIRECTORY="$HOME/quicksilver"
 GENESIS="https://raw.githubusercontent.com/ingenuity-build/mainnet/main/genesis.json"
 BINARYNAME="quicksilverd"
-VERSION="v1.2.9-hotfix.0"
+VERSION="v1.2.14"
 DAEMON_HOME="$HOME/.quicksilverd"
 CHAINID="quicksilver-2"
 SEEDS=""
@@ -115,7 +108,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.02ukyve\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.02uqck\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 

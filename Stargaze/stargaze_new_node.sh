@@ -1,19 +1,12 @@
 #!/bin/bash
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
-# You need config in two peers (avoid seed servers) this values in app.toml:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
-# Pruning should be fine tuned also, for this testings is set to nothing
-#     pruning = "~default"
-
 
 set -e
 REPO="https://github.com/public-awesome/stargaze"
 REPODIRECTORY="$HOME/stargaze"
 GENESIS="https://ibs.team/statesync/Stargaze/genesis.json"
 BINARYNAME="starsd"
-VERSION="v9.0.0"
+VERSION="v11.0.0"
 DAEMON_HOME="$HOME/.starsd"
 CHAINID="stargaze-1"
 SEEDS=""

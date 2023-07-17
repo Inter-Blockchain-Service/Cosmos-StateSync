@@ -2,17 +2,13 @@
 # Based on the work of Joe (Chorus-One) for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 # Updated by Raul Bernal for Bitcanna - https://github.com/BitCannaCommunity/cosmos-statesync_client
 # RPC by Inter Blockchain Services
-# ours statesync config:
-#     [state-sync]
-#     snapshot-interval = 1000
-#     snapshot-keep-recent = 10
 
 DAEMON_HOME="$HOME/.ixod"
 DAEMON_NAME="ixod"
 NODE1_IP="ixo-rpc.ibs.team"
 RPC1="https://$NODE1_IP"
 RPC_PORT1=443
-INTERVAL=100
+INTERVAL=2000
 
 # Let's check if JQ tool is installed
 FILE=$(which jq)
