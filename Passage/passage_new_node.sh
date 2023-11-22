@@ -4,16 +4,16 @@
 set -e
 REPO="https://github.com/envadiv/Passage3D"
 REPODIRECTORY="$HOME/Passage3D"
-GENESIS="https://ibs.team/statesync/Passage/genesis.json"
+GENESIS="https://raw.githubusercontent.com/envadiv/mainnet/main/passage-2/genesis.json"
 BINARYNAME="passage"
-VERSION="v1.1.0"
+VERSION="v2.2.0"
 DAEMON_HOME="$HOME/.passage"
-CHAINID="passage-1"
+CHAINID="passage-2"
 SEEDS=""
 RPC1="https://passage-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.18.6"
+GOVERSION="1.20.10"
 
 clear
 echo "###################################################################"
