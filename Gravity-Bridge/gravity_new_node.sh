@@ -108,7 +108,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.001ubcna\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.00ugrav\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
