@@ -13,7 +13,7 @@ SEEDS=""
 RPC1="https://kujira-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.21.1"
+GOVERSION="1.20.8"
 
 clear
 echo "###################################################################"
