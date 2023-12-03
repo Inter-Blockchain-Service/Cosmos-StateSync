@@ -13,7 +13,7 @@ SEEDS=""
 RPC1="https://nolus-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=100
-GOVERSION="1.21.4"
+GOVERSION="1.20.10"
 
 clear
 echo "###################################################################"
