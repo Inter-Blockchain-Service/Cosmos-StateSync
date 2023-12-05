@@ -6,14 +6,14 @@ REPO="https://github.com/KYVENetwork/chain"
 REPODIRECTORY="$HOME/chain"
 GENESIS="https://raw.githubusercontent.com/KYVENetwork/networks/main/kyve-1/genesis.json"
 BINARYNAME="kyved"
-VERSION="v1.2.2"
+VERSION="v1.4.0"
 DAEMON_HOME="$HOME/.kyve"
 CHAINID="kyve-1"
 SEEDS=""
 RPC1="https://kyve-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.20.2"
+GOVERSION="1.20.10"
 
 clear
 echo "###################################################################"
