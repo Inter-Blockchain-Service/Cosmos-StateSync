@@ -6,14 +6,14 @@ REPO="https://github.com/ingenuity-build/quicksilver"
 REPODIRECTORY="$HOME/quicksilver"
 GENESIS="https://raw.githubusercontent.com/ingenuity-build/mainnet/main/genesis.json"
 BINARYNAME="quicksilverd"
-VERSION="v1.2.14"
+VERSION="v1.4.5"
 DAEMON_HOME="$HOME/.quicksilverd"
 CHAINID="quicksilver-2"
 SEEDS=""
 RPC1="https://quicksilver-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.19.5"
+GOVERSION="1.21.1"
 
 clear
 echo "###################################################################"
