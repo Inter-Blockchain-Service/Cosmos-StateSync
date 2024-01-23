@@ -6,14 +6,14 @@ REPO="https://github.com/nolus-protocol/nolus-core"
 REPODIRECTORY="$HOME/nolus-core"
 GENESIS="https://raw.githubusercontent.com/nolus-protocol/nolus-networks/main/mainnet/pirin-1/genesis.json"
 BINARYNAME="nolusd"
-VERSION="v0.4.1"
+VERSION="v0.5.0"
 DAEMON_HOME="$HOME/.nolusd"
 CHAINID="pirin-1"
 SEEDS=""
 RPC1="https://nolus-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=100
-GOVERSION="1.20.10"
+GOVERSION="1.21.1"
 
 clear
 echo "###################################################################"
