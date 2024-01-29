@@ -6,14 +6,14 @@ REPO="https://github.com/TERITORI/teritori-chain"
 REPODIRECTORY="$HOME/teritori-chain"
 GENESIS="https://media.githubusercontent.com/media/TERITORI/teritori-mainnet-genesis/main/genesis.json"
 BINARYNAME="teritorid"
-VERSION="v1.4.0"
+VERSION="v2.0.6"
 DAEMON_HOME="$HOME/.teritorid"
 CHAINID="teritori-1"
 SEEDS=""
 RPC1="https://teritori-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.19.8"
+GOVERSION="1.21.2"
 
 clear
 echo "###################################################################"
