@@ -78,7 +78,7 @@ sleep 2
   git clone $REPO
   cd $REPODIRECTORY
   git checkout $VERSION
-  make install ENV=mainnet
+  make install
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json 
