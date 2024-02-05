@@ -1,4 +1,4 @@
-# Nolus statesync by Inter Blockchain Services
+# Dymension statesync by Inter Blockchain Services
 
 If you are running a validator BACKUP your priv_validator_key.json.
 
