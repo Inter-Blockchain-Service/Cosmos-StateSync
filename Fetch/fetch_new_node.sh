@@ -6,14 +6,14 @@ REPO="https://github.com/fetchai/fetchd"
 REPODIRECTORY="$HOME/fetchd"
 GENESIS="https://ibs.team/statesync/Fetch/genesis.json"
 BINARYNAME="fetchd"
-VERSION="v0.10.7"
+VERSION="v0.11.3"
 DAEMON_HOME="$HOME/.fetchd"
 CHAINID="fetchhub-4"
 SEEDS=""
 RPC1="https://fetch-rpc.ibs.team"
 RPC_PORT1=443
-INTERVAL=2000
-GOVERSION="1.20.2"
+INTERVAL=100
+GOVERSION="1.21.6"
 
 clear
 echo "###################################################################"

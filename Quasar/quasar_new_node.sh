@@ -2,18 +2,18 @@
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 
 set -e
-REPO="https://github.com/Decentr-net/decentr"
-REPODIRECTORY="$HOME/decentr"
-GENESIS="https://ibs.team/statesync/Decentr/genesis.json"
-BINARYNAME="decentrd"
-VERSION="v1.6.4"
-DAEMON_HOME="$HOME/.decentr"
-CHAINID="mainnet-3"
+REPO="https://github.com/quasar-finance/quasar"
+REPODIRECTORY="$HOME/quasar"
+GENESIS="https://raw.githubusercontent.com/quasar-finance/networks/main/quasar-1/definitive-genesis.json"
+BINARYNAME="quasarnoded"
+VERSION="v1.0.0"
+DAEMON_HOME="$HOME/.quasarnode"
+CHAINID="quasar-1"
 SEEDS=""
-RPC1="https://decentr-rpc.ibs.team"
+RPC1="https://quasar-rpc.ibs.team"
 RPC_PORT1=443
-INTERVAL=1000
-GOVERSION="1.19.5"
+INTERVAL=100
+GOVERSION="1.21.4"
 
 clear
 echo "###################################################################"
@@ -78,7 +78,7 @@ sleep 2
   git clone $REPO
   cd $REPODIRECTORY
   git checkout $VERSION
-  make install
+  make install ENV=mainnet
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
   rm -rf $DAEMON_HOME/config/genesis.json 
@@ -108,7 +108,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025udec\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.0025uqsr\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 
@@ -130,7 +130,7 @@ sleep 2
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo  "[Unit]
-  Description=$BINARYNAME
+  Description=$BINARYNAME Node
   After=network-online.target
   
   [Service]

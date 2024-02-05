@@ -1,19 +1,20 @@
 #!/bin/bash
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 
+
 set -e
-REPO="https://github.com/Decentr-net/decentr"
-REPODIRECTORY="$HOME/decentr"
-GENESIS="https://ibs.team/statesync/Decentr/genesis.json"
-BINARYNAME="decentrd"
-VERSION="v1.6.4"
-DAEMON_HOME="$HOME/.decentr"
-CHAINID="mainnet-3"
+REPO="https://github.com/BitCannaGlobal/bcna.git"
+REPODIRECTORY="$HOME/bcna"
+GENESIS="https://raw.githubusercontent.com/BitCannaGlobal/bcna/main/devnets/bitcanna-dev-1/genesis.json"
+BINARYNAME="bcnad"
+VERSION="2.0.3-rc2"
+DAEMON_HOME="$HOME/.bcna"
+CHAINID="bitcanna-dev-1"
 SEEDS=""
-RPC1="https://decentr-rpc.ibs.team"
+RPC1="https://bcnadev-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.19.5"
+GOVERSION="1.20.2"
 
 clear
 echo "###################################################################"
@@ -108,7 +109,7 @@ sleep 2
   s|^(persistent_peers[[:space:]]+=[[:space:]]+).*$|\1\"${NODE1_ID}@${NODE1_LISTEN_ADD}\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"$SEEDS\"|" $DAEMON_HOME/config/config.toml
 
-  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.025udec\"/' $DAEMON_HOME/config/app.toml
+  sed -E -i -s 's/minimum-gas-prices = \".*\"/minimum-gas-prices = \"0.001ubcna\"/' $DAEMON_HOME/config/app.toml
 
   $BINARYNAME tendermint unsafe-reset-all --home $DAEMON_HOME
 

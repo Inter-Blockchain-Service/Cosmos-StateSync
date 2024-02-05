@@ -7,14 +7,14 @@ REPO="https://github.com/BitCannaGlobal/bcna.git"
 REPODIRECTORY="$HOME/bcna"
 GENESIS="https://raw.githubusercontent.com/BitCannaGlobal/bcna/main/genesis.json"
 BINARYNAME="bcnad"
-VERSION="v2.0.2"
+VERSION="v3.0.0"
 DAEMON_HOME="$HOME/.bcna"
 CHAINID="bitcanna-1"
 SEEDS=""
 RPC1="https://bcna-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.20.2"
+GOVERSION="1.21.6"
 
 clear
 echo "###################################################################"

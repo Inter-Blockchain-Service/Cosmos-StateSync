@@ -6,14 +6,14 @@ REPO="https://github.com/Team-Kujira/core.git"
 REPODIRECTORY="$HOME/core"
 GENESIS="https://raw.githubusercontent.com/Team-Kujira/networks/master/mainnet/kaiyo-1.json"
 BINARYNAME="kujirad"
-VERSION="v0.8.7"
+VERSION="v0.9.1"
 DAEMON_HOME="$HOME/.kujira"
 CHAINID="kaiyo-1"
 SEEDS=""
 RPC1="https://kujira-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=1000
-GOVERSION="1.19.5"
+GOVERSION="1.20.8"
 
 clear
 echo "###################################################################"
