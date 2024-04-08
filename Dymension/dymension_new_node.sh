@@ -78,6 +78,7 @@ sleep 2
   git clone $REPO
   cd $REPODIRECTORY
   git checkout $VERSION
+  make install
   
   cd ~
   $BINARYNAME init New_peer --chain-id $CHAINID --home $DAEMON_HOME
