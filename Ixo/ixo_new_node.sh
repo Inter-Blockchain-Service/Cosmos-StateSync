@@ -2,18 +2,18 @@
 # Based on the work of Joe Bowman for Microtick - https://github.com/microtick/bounties/tree/main/statesync
 
 set -e
-REPO="https://github.com/jayjay-crypto/ixo-blockchain"
+REPO="https://github.com/ixofoundation/ixo-blockchain"
 REPODIRECTORY="$HOME/ixo-blockchain"
 GENESIS="https://github.com/ixofoundation/genesis/raw/main/ixo-5/genesis.json.tar.gz"
 BINARYNAME="ixod"
-VERSION="v0.20.1"
+VERSION="v3.0.0"
 DAEMON_HOME="$HOME/.ixod"
 CHAINID="ixo-5"
 SEEDS=""
 RPC1="https://ixo-rpc.ibs.team"
 RPC_PORT1=443
 INTERVAL=2000
-GOVERSION="1.19.4"
+GOVERSION="1.20.8"
 
 clear
 echo "###################################################################"
