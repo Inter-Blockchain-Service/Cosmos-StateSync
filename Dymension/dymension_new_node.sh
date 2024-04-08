@@ -4,7 +4,7 @@
 set -e
 REPO="https://github.com/dymensionxyz/dymension"
 REPODIRECTORY="$HOME/dymension"
-GENESIS="https://github.com/dymensionxyz/networks/blob/main/mainnet/dymension/genesis.json"
+GENESIS="https://ibs.team/statesync/Dymension/genesis.jsonon"
 BINARYNAME="dymd"
 VERSION="v3.0.0"
 DAEMON_HOME="$HOME/.dymension"
